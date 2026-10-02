@@ -1,0 +1,3971 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>بيانات المدرس | EDU CENTER</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        :root {
+
+            --gold: #d8b45a;
+            --gold-light: #f0d98b;
+            --gold-dark: #9b7931;
+
+            --black: #050505;
+            --black-soft: #090909;
+
+            --card: rgba(18, 18, 18, 0.78);
+            --card-light: rgba(255, 255, 255, 0.035);
+
+            --border: rgba(216, 180, 90, 0.16);
+            --border-light: rgba(255, 255, 255, 0.07);
+
+            --white: #ffffff;
+            --muted: rgba(255, 255, 255, 0.62);
+
+            --green: #83d88e;
+            --yellow: #e8c85d;
+            --red: #e77c7c;
+
+            --container: 1180px;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family: "Cairo", sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(216, 180, 90, 0.07),
+                    transparent 35%
+                ),
+                var(--black);
+
+            color: var(--white);
+
+            min-height: 100vh;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+
+        .container {
+            width: min(92%, var(--container));
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+
+            background:
+                rgba(5, 5, 5, 0.88);
+
+            backdrop-filter:
+                blur(18px);
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, 0.06);
+        }
+
+
+        .nav-container {
+
+            min-height: 78px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+        }
+
+
+        .logo img {
+
+            width: 58px;
+            height: 58px;
+
+            object-fit: contain;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 28px;
+
+            list-style: none;
+        }
+
+
+        .nav-links a {
+
+            color:
+                rgba(255, 255, 255, 0.72);
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .nav-links a:hover {
+
+            color:
+                var(--gold-light);
+        }
+
+
+        .login-button {
+
+            border:
+                1px solid var(--border);
+
+            padding:
+                9px 18px;
+
+            border-radius:
+                10px;
+
+            color:
+                var(--gold-light) !important;
+
+            background:
+                rgba(216, 180, 90, 0.06);
+        }
+
+
+        .login-button:hover {
+
+            background:
+                rgba(216, 180, 90, 0.12);
+        }
+
+
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .page {
+
+            padding:
+                70px 0 100px;
+        }
+
+
+        .back-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color:
+                var(--muted);
+
+            font-size: 14px;
+
+            margin-bottom:
+                28px;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .back-link:hover {
+
+            color:
+                var(--gold-light);
+        }
+
+
+
+        /* =====================================================
+           TEACHER HERO
+        ===================================================== */
+
+        .teacher-hero {
+
+            display: grid;
+
+            grid-template-columns:
+                300px 1fr;
+
+            gap: 40px;
+
+            align-items:
+                center;
+
+            padding:
+                35px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(216, 180, 90, 0.07),
+                    rgba(255, 255, 255, 0.015)
+                );
+
+            box-shadow:
+                0 25px 80px
+                rgba(0, 0, 0, 0.35);
+        }
+
+
+        .teacher-photo-wrapper {
+
+            display: flex;
+
+            justify-content:
+                center;
+        }
+
+
+        .teacher-photo {
+
+            width:
+                240px;
+
+            height:
+                240px;
+
+            object-fit:
+                cover;
+
+            border-radius:
+                22px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                #111;
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.4);
+        }
+
+
+        .teacher-info {
+
+            min-width:
+                0;
+        }
+
+
+        .teacher-label {
+
+            color:
+                var(--gold);
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            margin-bottom:
+                10px;
+        }
+
+
+        .teacher-name {
+
+            font-size:
+                clamp(30px, 5vw, 48px);
+
+            line-height:
+                1.2;
+
+            font-weight:
+                800;
+
+            color:
+                var(--white);
+
+            margin-bottom:
+                12px;
+        }
+
+
+        .teacher-subject {
+
+            color:
+                var(--gold-light);
+
+            font-size:
+                17px;
+
+            font-weight:
+                600;
+
+            margin-bottom:
+                18px;
+        }
+
+
+        .teacher-description {
+
+            color:
+                var(--muted);
+
+            font-size:
+                15px;
+
+            line-height:
+                2;
+
+            max-width:
+                760px;
+        }
+
+
+
+        /* =====================================================
+           SECTIONS
+        ===================================================== */
+
+        .section {
+
+            margin-top:
+                55px;
+        }
+
+
+        .section-title {
+
+            display: flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            margin-bottom:
+                24px;
+        }
+
+
+        .section-title::before {
+
+            content:
+                "";
+
+            width:
+                5px;
+
+            height:
+                28px;
+
+            border-radius:
+                20px;
+
+            background:
+                var(--gold);
+        }
+
+
+        .section-title h2 {
+
+            font-size:
+                23px;
+
+            font-weight:
+                800;
+        }
+
+
+        .section-title p {
+
+            color:
+                var(--muted);
+
+            font-size:
+                13px;
+
+            margin-top:
+                3px;
+        }
+
+
+
+        /* =====================================================
+           PRICES
+        ===================================================== */
+
+        .prices-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    5,
+                    minmax(0, 1fr)
+                );
+
+            gap:
+                15px;
+        }
+
+
+        .price-card {
+
+            padding:
+                22px 18px;
+
+            border:
+                1px solid
+                var(--border-light);
+
+            border-radius:
+                18px;
+
+            background:
+                var(--card);
+
+            text-align:
+                center;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease;
+        }
+
+
+        .price-card:hover {
+
+            transform:
+                translateY(-4px);
+
+            border-color:
+                var(--border);
+
+            background:
+                rgba(20, 20, 20, 0.9);
+        }
+
+
+        .price-stage {
+
+            color:
+                var(--muted);
+
+            font-size:
+                13px;
+
+            margin-bottom:
+                12px;
+        }
+
+
+        .price-value {
+
+            color:
+                var(--gold-light);
+
+            font-size:
+                24px;
+
+            font-weight:
+                800;
+        }
+
+
+        .price-currency {
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+
+            margin-right:
+                4px;
+        }
+
+
+
+        /* =====================================================
+           SCHEDULE HEAD
+        ===================================================== */
+
+        .schedule-headline {
+
+            display: flex;
+
+            align-items:
+                flex-end;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+
+            margin-bottom:
+                22px;
+        }
+
+
+        .schedule-note {
+
+            display: inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            padding:
+                9px 13px;
+
+            border:
+                1px solid
+                rgba(216, 180, 90, 0.12);
+
+            border-radius:
+                11px;
+
+            background:
+                rgba(216, 180, 90, 0.04);
+
+            color:
+                rgba(255, 255, 255, 0.52);
+
+            font-size:
+                11px;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .schedule-note-dot {
+
+            width:
+                8px;
+
+            height:
+                8px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--gold);
+
+            box-shadow:
+                0 0 10px
+                rgba(216, 180, 90, 0.35);
+        }
+
+
+
+        /* =====================================================
+           SCHEDULE GRID
+        ===================================================== */
+
+        .schedule-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
+            gap:
+                18px;
+        }
+
+
+
+        /* =====================================================
+           DAY CARD
+        ===================================================== */
+
+        .day-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            min-width:
+                0;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(20, 20, 20, 0.92),
+                    rgba(12, 12, 12, 0.86)
+                );
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.07);
+
+            border-radius:
+                20px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(0, 0, 0, 0.20);
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .day-card:hover {
+
+            transform:
+                translateY(-3px);
+
+            border-color:
+                rgba(216, 180, 90, 0.18);
+
+            box-shadow:
+                0 20px 55px
+                rgba(0, 0, 0, 0.28);
+        }
+
+
+        .day-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            right:
+                0;
+
+            left:
+                0;
+
+            height:
+                2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(216, 180, 90, 0.6),
+                    transparent
+                );
+
+            opacity:
+                0.75;
+        }
+
+
+        .day-card.friday-card {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+
+        /* =====================================================
+           DAY HEADER
+        ===================================================== */
+
+        .day-header {
+
+            padding:
+                17px 19px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                12px;
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, 0.055);
+
+            background:
+                rgba(216, 180, 90, 0.035);
+        }
+
+
+        .day-header-right {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                11px;
+
+            min-width:
+                0;
+        }
+
+
+        .day-icon {
+
+            width:
+                36px;
+
+            height:
+                36px;
+
+            flex-shrink:
+                0;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                11px;
+
+            border:
+                1px solid
+                rgba(216, 180, 90, 0.13);
+
+            background:
+                rgba(216, 180, 90, 0.07);
+
+            color:
+                var(--gold-light);
+
+            font-size:
+                15px;
+
+            font-weight:
+                800;
+        }
+
+
+        .day-name {
+
+            font-size:
+                16px;
+
+            font-weight:
+                800;
+
+            color:
+                var(--white);
+        }
+
+
+        .day-subtitle {
+
+            margin-top:
+                1px;
+
+            color:
+                rgba(255, 255, 255, 0.38);
+
+            font-size:
+                10px;
+        }
+
+
+        .day-count {
+
+            flex-shrink:
+                0;
+
+            padding:
+                6px 10px;
+
+            border-radius:
+                9px;
+
+            background:
+                rgba(255, 255, 255, 0.035);
+
+            color:
+                rgba(255, 255, 255, 0.52);
+
+            font-size:
+                10px;
+
+            font-weight:
+                600;
+        }
+
+
+
+        /* =====================================================
+           LESSONS
+        ===================================================== */
+
+        .day-lessons {
+
+            padding:
+                13px;
+        }
+
+
+        .lesson {
+
+            position:
+                relative;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr auto;
+
+            gap:
+                14px;
+
+            align-items:
+                center;
+
+            padding:
+                14px;
+
+            margin-bottom:
+                10px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.055);
+
+            border-radius:
+                15px;
+
+            background:
+                rgba(255, 255, 255, 0.023);
+
+            transition:
+                transform 0.22s ease,
+                background 0.22s ease,
+                border-color 0.22s ease;
+        }
+
+
+        .lesson:last-child {
+
+            margin-bottom:
+                0;
+        }
+
+
+        .lesson:hover {
+
+            transform:
+                translateX(-2px);
+
+            background:
+                rgba(216, 180, 90, 0.035);
+
+            border-color:
+                rgba(216, 180, 90, 0.12);
+        }
+
+
+
+        /* =====================================================
+           LESSON MAIN
+        ===================================================== */
+
+        .lesson-main {
+
+            min-width:
+                0;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+        }
+
+
+        .lesson-number {
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            flex-shrink:
+                0;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                10px;
+
+            background:
+                rgba(216, 180, 90, 0.065);
+
+            border:
+                1px solid
+                rgba(216, 180, 90, 0.10);
+
+            color:
+                rgba(240, 217, 139, 0.78);
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+        }
+
+
+        .lesson-info {
+
+            min-width:
+                0;
+        }
+
+
+        .lesson-stage {
+
+            color:
+                rgba(255, 255, 255, 0.95);
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
+
+            white-space:
+                nowrap;
+
+            overflow:
+                hidden;
+
+            text-overflow:
+                ellipsis;
+        }
+
+
+        .lesson-label {
+
+            margin-top:
+                2px;
+
+            color:
+                rgba(255, 255, 255, 0.36);
+
+            font-size:
+                9px;
+        }
+
+
+
+        /* =====================================================
+           TIME + STATUS
+        ===================================================== */
+
+        .lesson-side {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                flex-end;
+
+            gap:
+                8px;
+
+            flex-shrink:
+                0;
+        }
+
+
+        .lesson-time {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                6px;
+
+            min-width:
+                135px;
+
+            padding:
+                8px 11px;
+
+            border-radius:
+                10px;
+
+            background:
+                rgba(216, 180, 90, 0.05);
+
+            border:
+                1px solid
+                rgba(216, 180, 90, 0.09);
+
+            color:
+                var(--gold-light);
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            white-space:
+                nowrap;
+
+            direction:
+                rtl;
+        }
+
+
+        .lesson-time-icon {
+
+            color:
+                var(--gold);
+
+            font-size:
+                12px;
+        }
+
+
+
+        /* =====================================================
+           BIGGER STATUS
+        ===================================================== */
+
+        .lesson-status {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                8px;
+
+            min-width:
+                170px;
+
+            min-height:
+                38px;
+
+            padding:
+                9px 14px;
+
+            border-radius:
+                12px;
+
+            font-size:
+                13px;
+
+            font-weight:
+                800;
+
+            white-space:
+                nowrap;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.06);
+
+            background:
+                rgba(255, 255, 255, 0.025);
+
+            letter-spacing:
+                0.1px;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .status-dot {
+
+            width:
+                10px;
+
+            height:
+                10px;
+
+            flex-shrink:
+                0;
+
+            border-radius:
+                50%;
+
+            display:
+                inline-block;
+        }
+
+
+        /* =====================================================
+           GREEN
+        ===================================================== */
+
+        .status-green {
+
+            color:
+                #a4e9ad;
+
+            background:
+                rgba(131, 216, 142, 0.09);
+
+            border-color:
+                rgba(131, 216, 142, 0.20);
+
+            box-shadow:
+                0 6px 20px
+                rgba(131, 216, 142, 0.05);
+        }
+
+
+        .status-green .status-dot {
+
+            background:
+                var(--green);
+
+            box-shadow:
+                0 0 10px
+                rgba(131, 216, 142, 0.55);
+        }
+
+
+
+        /* =====================================================
+           YELLOW
+        ===================================================== */
+
+        .status-yellow {
+
+            color:
+                #f1d875;
+
+            background:
+                rgba(232, 200, 93, 0.09);
+
+            border-color:
+                rgba(232, 200, 93, 0.20);
+
+            box-shadow:
+                0 6px 20px
+                rgba(232, 200, 93, 0.05);
+        }
+
+
+        .status-yellow .status-dot {
+
+            background:
+                var(--yellow);
+
+            box-shadow:
+                0 0 10px
+                rgba(232, 200, 93, 0.55);
+        }
+
+
+
+        /* =====================================================
+           RED
+        ===================================================== */
+
+        .status-red {
+
+            color:
+                #ef9b9b;
+
+            background:
+                rgba(231, 124, 124, 0.075);
+
+            border-color:
+                rgba(231, 124, 124, 0.18);
+
+            box-shadow:
+                0 6px 20px
+                rgba(231, 124, 124, 0.035);
+        }
+
+
+        .status-red .status-dot {
+
+            background:
+                var(--red);
+
+            box-shadow:
+                0 0 10px
+                rgba(231, 124, 124, 0.50);
+        }
+
+
+
+        /* =====================================================
+           EMPTY DAY
+        ===================================================== */
+
+        .no-day-lessons {
+
+            min-height:
+                110px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            text-align:
+                center;
+
+            padding:
+                20px 15px;
+
+            color:
+                rgba(255, 255, 255, 0.30);
+
+            font-size:
+                11px;
+
+            border:
+                1px dashed
+                rgba(255, 255, 255, 0.065);
+
+            border-radius:
+                13px;
+
+            background:
+                rgba(255, 255, 255, 0.012);
+        }
+
+
+        .empty-schedule {
+
+            grid-column:
+                1 / -1;
+
+            padding:
+                50px 20px;
+
+            text-align:
+                center;
+
+            color:
+                var(--muted);
+
+            font-size:
+                13px;
+
+            border:
+                1px dashed
+                rgba(255, 255, 255, 0.08);
+
+            border-radius:
+                18px;
+
+            background:
+                rgba(255, 255, 255, 0.015);
+        }
+
+
+
+        /* =====================================================
+           LOADING / ERROR
+        ===================================================== */
+
+        .loading {
+
+            min-height:
+                300px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            color:
+                var(--muted);
+        }
+
+
+        .error-box {
+
+            padding:
+                30px;
+
+            text-align:
+                center;
+
+            border-radius:
+                20px;
+
+            border:
+                1px solid
+                rgba(231, 124, 124, 0.2);
+
+            background:
+                rgba(231, 124, 124, 0.04);
+
+            color:
+                var(--red);
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+
+            .teacher-hero {
+
+                grid-template-columns:
+                    1fr;
+
+                text-align:
+                    center;
+            }
+
+
+            .teacher-description {
+
+                margin:
+                    auto;
+            }
+
+
+            .prices-grid {
+
+                grid-template-columns:
+                    repeat(
+                        3,
+                        minmax(0, 1fr)
+                    );
+            }
+
+
+            .schedule-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .day-card.friday-card {
+
+                grid-column:
+                    auto;
+            }
+
+
+            .schedule-headline {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+            }
+
+        }
+
+
+
+        @media (max-width: 600px) {
+
+            .page {
+
+                padding-top:
+                    40px;
+            }
+
+
+            .teacher-hero {
+
+                padding:
+                    24px 18px;
+
+                border-radius:
+                    20px;
+            }
+
+
+            .teacher-photo {
+
+                width:
+                    190px;
+
+                height:
+                    190px;
+            }
+
+
+            .teacher-name {
+
+                font-size:
+                    30px;
+            }
+
+
+            .prices-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(0, 1fr)
+                    );
+            }
+
+
+            .price-card {
+
+                padding:
+                    18px 10px;
+            }
+
+
+            .lesson {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    12px;
+            }
+
+
+            .lesson-side {
+
+                align-items:
+                    stretch;
+
+                flex-direction:
+                    column;
+
+                width:
+                    100%;
+            }
+
+
+            .lesson-time {
+
+                width:
+                    100%;
+            }
+
+
+            .lesson-status {
+
+                width:
+                    100%;
+
+                min-width:
+                    0;
+
+                font-size:
+                    12px;
+
+                min-height:
+                    40px;
+            }
+
+
+            .day-header {
+
+                padding:
+                    15px;
+            }
+
+
+            .day-icon {
+
+                width:
+                    33px;
+
+                height:
+                    33px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+
+    <nav class="navbar">
+
+        <div class="container nav-container">
+
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+
+                <img
+                    src="logo.png"
+                    alt="شعار مركز التعليم"
+                >
+
+            </a>
+
+
+            <ul class="nav-links">
+
+
+                <li>
+
+                    <a href="index.html">
+                        الرئيسية
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="index.html#teachers">
+                        المدرسين
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="index.html#features">
+                        المميزات
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="index.html#contact">
+                        تواصل معنا
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a
+                        href="login.html"
+                        class="login-button"
+                    >
+                        تسجيل الدخول
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+    <main class="page">
+
+        <div class="container">
+
+
+            <a
+                href="index.html#teachers"
+                class="back-link"
+            >
+
+                ← العودة إلى المدرسين
+
+            </a>
+
+
+
+            <div
+                id="loading"
+                class="loading"
+            >
+
+                جاري تحميل بيانات المدرس...
+
+            </div>
+
+
+
+            <div
+                id="errorBox"
+                class="error-box"
+                style="display:none;"
+            ></div>
+
+
+
+            <div
+                id="teacherContent"
+                style="display:none;"
+            >
+
+
+                <!-- =================================================
+                     TEACHER HERO
+                ================================================= -->
+
+                <section
+                    class="teacher-hero"
+                >
+
+
+                    <div
+                        class="teacher-photo-wrapper"
+                    >
+
+                        <img
+                            id="teacherImage"
+                            class="teacher-photo"
+                            src=""
+                            alt="صورة المدرس"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="teacher-info"
+                    >
+
+                        <div
+                            class="teacher-label"
+                        >
+                            مدرس في مركز أبو العباس
+                        </div>
+
+
+                        <h1
+                            id="teacherName"
+                            class="teacher-name"
+                        >
+                            -
+                        </h1>
+
+
+                        <div
+                            id="teacherSubject"
+                            class="teacher-subject"
+                        >
+                            -
+                        </div>
+
+
+                        <p
+                            id="teacherDescription"
+                            class="teacher-description"
+                        >
+                            -
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     PRICES
+                ================================================= -->
+
+                <section
+                    class="section"
+                >
+
+
+                    <div
+                        class="section-title"
+                    >
+
+                        <div>
+
+                            <h2>
+                                أسعار المراحل
+                            </h2>
+
+
+                            <p>
+                                الأسعار الشهرية
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="pricesGrid"
+                        class="prices-grid"
+                    >
+
+
+                        <div
+                            class="price-card"
+                        >
+
+                            <div
+                                class="price-stage"
+                            >
+                                أولى إعدادي
+                            </div>
+
+
+                            <div
+                                class="price-value"
+                            >
+
+                                <span
+                                    id="prep1Price"
+                                >
+                                    -
+                                </span>
+
+
+                                <span
+                                    class="price-currency"
+                                >
+                                    جنيه
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div
+                            class="price-card"
+                        >
+
+                            <div
+                                class="price-stage"
+                            >
+                                ثانية إعدادي
+                            </div>
+
+
+                            <div
+                                class="price-value"
+                            >
+
+                                <span
+                                    id="prep2Price"
+                                >
+                                    -
+                                </span>
+
+
+                                <span
+                                    class="price-currency"
+                                >
+                                    جنيه
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div
+                            class="price-card"
+                        >
+
+                            <div
+                                class="price-stage"
+                            >
+                                ثالثة إعدادي
+                            </div>
+
+
+                            <div
+                                class="price-value"
+                            >
+
+                                <span
+                                    id="prep3Price"
+                                >
+                                    -
+                                </span>
+
+
+                                <span
+                                    class="price-currency"
+                                >
+                                    جنيه
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div
+                            class="price-card"
+                        >
+
+                            <div
+                                class="price-stage"
+                            >
+                                أولى ثانوي
+                            </div>
+
+
+                            <div
+                                class="price-value"
+                            >
+
+                                <span
+                                    id="sec1Price"
+                                >
+                                    -
+                                </span>
+
+
+                                <span
+                                    class="price-currency"
+                                >
+                                    جنيه
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div
+                            class="price-card"
+                        >
+
+                            <div
+                                class="price-stage"
+                            >
+                                ثانية ثانوي
+                            </div>
+
+
+                            <div
+                                class="price-value"
+                            >
+
+                                <span
+                                    id="sec2Price"
+                                >
+                                    -
+                                </span>
+
+
+                                <span
+                                    class="price-currency"
+                                >
+                                    جنيه
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     SCHEDULE
+                ================================================= -->
+
+                <section
+                    class="section"
+                >
+
+
+                    <div
+                        class="schedule-headline"
+                    >
+
+
+                        <div
+                            class="section-title"
+                        >
+
+                            <div>
+
+                                <h2>
+                                    مواعيد الحصص
+                                </h2>
+
+
+                                <p>
+                                    جميع المواعيد الحالية للمدرس
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="schedule-note"
+                        >
+
+                            <span
+                                class="schedule-note-dot"
+                            ></span>
+
+                            الحالة تتحدث تلقائيًا
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div
+                        id="scheduleGrid"
+                        class="schedule-grid"
+                    ></div>
+
+
+                </section>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         SUPABASE
+    ===================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase-config.js"></script>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+        /* =====================================================
+           BASIC HELPERS
+        ===================================================== */
+
+        function setText(id, value) {
+
+            const element =
+                document.getElementById(id);
+
+
+            if (!element) {
+                return;
+            }
+
+
+            element.textContent =
+                value !== null &&
+                value !== undefined &&
+                value !== ""
+                    ? value
+                    : "-";
+        }
+
+
+        function showError(message) {
+
+            const loading =
+                document.getElementById(
+                    "loading"
+                );
+
+
+            const errorBox =
+                document.getElementById(
+                    "errorBox"
+                );
+
+
+            const content =
+                document.getElementById(
+                    "teacherContent"
+                );
+
+
+            if (loading) {
+
+                loading.style.display =
+                    "none";
+            }
+
+
+            if (content) {
+
+                content.style.display =
+                    "none";
+            }
+
+
+            if (errorBox) {
+
+                errorBox.textContent =
+                    message;
+
+                errorBox.style.display =
+                    "block";
+            }
+        }
+
+
+        function escapeHtml(value) {
+
+            return String(value ?? "")
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+        }
+
+
+
+        /* =====================================================
+           DAYS
+        ===================================================== */
+
+        const DAYS = [
+
+            "السبت",
+
+            "الأحد",
+
+            "الاثنين",
+
+            "الثلاثاء",
+
+            "الأربعاء",
+
+            "الخميس",
+
+            "الجمعة"
+
+        ];
+
+
+        const DISPLAY_DAYS = [
+
+            "السبت",
+
+            "الثلاثاء",
+
+            "الأحد",
+
+            "الأربعاء",
+
+            "الاثنين",
+
+            "الخميس",
+
+            "الجمعة"
+
+        ];
+
+
+        function normalizeDay(day) {
+
+            const value =
+
+                String(day ?? "")
+                    .trim()
+                    .toLowerCase();
+
+
+            const map = {
+
+                "السبت":
+                    "السبت",
+
+                "sat":
+                    "السبت",
+
+                "saturday":
+                    "السبت",
+
+
+                "الأحد":
+                    "الأحد",
+
+                "الاحد":
+                    "الأحد",
+
+                "sun":
+                    "الأحد",
+
+                "sunday":
+                    "الأحد",
+
+
+                "الاثنين":
+                    "الاثنين",
+
+                "الإثنين":
+                    "الاثنين",
+
+                "الاتنين":
+                    "الاثنين",
+
+                "mon":
+                    "الاثنين",
+
+                "monday":
+                    "الاثنين",
+
+
+                "الثلاثاء":
+                    "الثلاثاء",
+
+                "التلات":
+                    "الثلاثاء",
+
+                "tue":
+                    "الثلاثاء",
+
+                "tuesday":
+                    "الثلاثاء",
+
+
+                "الأربعاء":
+                    "الأربعاء",
+
+                "الاربعاء":
+                    "الأربعاء",
+
+                "wed":
+                    "الأربعاء",
+
+                "wednesday":
+                    "الأربعاء",
+
+
+                "الخميس":
+                    "الخميس",
+
+                "thu":
+                    "الخميس",
+
+                "thursday":
+                    "الخميس",
+
+
+                "الجمعة":
+                    "الجمعة",
+
+                "الجمعه":
+                    "الجمعة",
+
+                "fri":
+                    "الجمعة",
+
+                "friday":
+                    "الجمعة"
+
+            };
+
+
+            return map[value] ||
+                String(day ?? "").trim();
+        }
+
+
+        function getDayNumber(day) {
+
+            return DAYS.indexOf(
+                normalizeDay(day)
+            );
+        }
+
+
+
+        /* =====================================================
+           TIME
+        ===================================================== */
+
+        function parseTime(value) {
+
+            if (
+
+                value === null ||
+
+                value === undefined ||
+
+                value === ""
+
+            ) {
+
+                return null;
+            }
+
+
+            let text =
+                String(value)
+                    .trim()
+                    .toLowerCase();
+
+
+            text =
+
+                text
+
+                    .replace(
+                        /ص/g,
+                        " am "
+                    )
+
+                    .replace(
+                        /م/g,
+                        " pm "
+                    )
+
+                    .replace(
+                        /\s+/g,
+                        " "
+                    )
+
+                    .trim();
+
+
+            const hasAM =
+                text.includes("am");
+
+
+            const hasPM =
+                text.includes("pm");
+
+
+            text =
+
+                text
+                    .replace(
+                        "am",
+                        ""
+                    )
+                    .replace(
+                        "pm",
+                        ""
+                    )
+                    .trim();
+
+
+            const parts =
+                text.split(":");
+
+
+            let hours =
+                parseInt(
+                    parts[0],
+                    10
+                );
+
+
+            let minutes =
+
+                parts[1]
+
+                    ? parseInt(
+                        parts[1],
+                        10
+                    )
+
+                    : 0;
+
+
+            if (
+
+                Number.isNaN(hours) ||
+
+                Number.isNaN(minutes)
+
+            ) {
+
+                return null;
+            }
+
+
+            if (
+                hasPM &&
+                hours < 12
+            ) {
+
+                hours += 12;
+            }
+
+
+            if (
+                hasAM &&
+                hours === 12
+            ) {
+
+                hours = 0;
+            }
+
+
+            if (
+
+                !hasAM &&
+
+                !hasPM &&
+
+                hours >= 1 &&
+
+                hours <= 7
+
+            ) {
+
+                hours += 12;
+            }
+
+
+            return {
+
+                hours,
+
+                minutes
+
+            };
+        }
+
+
+        function parseTimeRange(value) {
+
+            if (!value) {
+
+                return {
+
+                    start: null,
+
+                    end: null
+
+                };
+            }
+
+
+            const parts =
+
+                String(value)
+                    .trim()
+                    .split(
+                        /\s*[-–—]\s*/
+                    );
+
+
+            if (
+                parts.length < 2
+            ) {
+
+                return {
+
+                    start: null,
+
+                    end: null
+
+                };
+            }
+
+
+            return {
+
+                start:
+                    parseTime(
+                        parts[0]
+                    ),
+
+                end:
+                    parseTime(
+                        parts[1]
+                    )
+
+            };
+        }
+
+
+        function timeToString(time) {
+
+            if (!time) {
+                return "";
+            }
+
+
+            return [
+
+                String(
+                    time.hours
+                ).padStart(
+                    2,
+                    "0"
+                ),
+
+                String(
+                    time.minutes
+                ).padStart(
+                    2,
+                    "0"
+                )
+
+            ].join(":");
+        }
+
+
+        function formatTime(value) {
+
+            const time =
+
+                typeof value === "string"
+
+                    ? parseTime(value)
+
+                    : value;
+
+
+            if (!time) {
+                return "";
+            }
+
+
+            let hour =
+                time.hours;
+
+
+            const minute =
+                String(
+                    time.minutes
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            const period =
+                hour >= 12
+                    ? "م"
+                    : "ص";
+
+
+            hour =
+                hour % 12;
+
+
+            if (hour === 0) {
+                hour = 12;
+            }
+
+
+            return `${hour}:${minute} ${period}`;
+        }
+
+
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        function getLessonStatus(
+            day,
+            start,
+            end
+        ) {
+
+            const dayNumber =
+                getDayNumber(day);
+
+
+            const startTime =
+                parseTime(start);
+
+
+            const endTime =
+                parseTime(end);
+
+
+            if (
+
+                dayNumber === -1 ||
+
+                !startTime ||
+
+                !endTime
+
+            ) {
+
+                return {
+
+                    type: "red",
+
+                    text: "لم تبدأ بعد"
+
+                };
+            }
+
+
+            const now =
+                new Date();
+
+
+            const jsDay =
+                now.getDay();
+
+
+            const today =
+
+                jsDay === 6
+
+                    ? 0
+
+                    : jsDay + 1;
+
+
+            if (
+                today !== dayNumber
+            ) {
+
+                return {
+
+                    type: "red",
+
+                    text: "لم تبدأ بعد"
+
+                };
+            }
+
+
+            const startDate =
+                new Date(now);
+
+
+            startDate.setHours(
+
+                startTime.hours,
+
+                startTime.minutes,
+
+                0,
+
+                0
+
+            );
+
+
+            const endDate =
+                new Date(now);
+
+
+            endDate.setHours(
+
+                endTime.hours,
+
+                endTime.minutes,
+
+                0,
+
+                0
+
+            );
+
+
+            const diffToStart =
+
+                startDate.getTime() -
+
+                now.getTime();
+
+
+            if (
+                diffToStart >
+                30 * 60 * 1000
+            ) {
+
+                return {
+
+                    type: "red",
+
+                    text: "لم تبدأ بعد"
+
+                };
+            }
+
+
+            if (
+
+                diffToStart > 0 &&
+
+                diffToStart <=
+                30 * 60 * 1000
+
+            ) {
+
+                const totalSeconds =
+
+                    Math.max(
+
+                        0,
+
+                        Math.floor(
+
+                            diffToStart /
+                            1000
+
+                        )
+
+                    );
+
+
+                const minutes =
+
+                    Math.floor(
+
+                        totalSeconds /
+                        60
+
+                    );
+
+
+                const seconds =
+
+                    totalSeconds %
+                    60;
+
+
+                return {
+
+                    type: "yellow",
+
+                    text:
+
+                        `متبقي ${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
+
+                };
+            }
+
+
+            if (
+
+                now >= startDate &&
+
+                now <= endDate
+
+            ) {
+
+                return {
+
+                    type: "green",
+
+                    text: "الحصة بدأت"
+
+                };
+            }
+
+
+            if (
+                now > endDate
+            ) {
+
+                return {
+
+                    type: "red",
+
+                    text: "الحصة انتهت"
+
+                };
+            }
+
+
+            return {
+
+                type: "red",
+
+                text: "لم تبدأ بعد"
+
+            };
+        }
+
+
+
+        /* =====================================================
+           DATABASE CLASS
+        ===================================================== */
+
+        function normalizeClassItem(item) {
+
+            if (!item) {
+                return null;
+            }
+
+
+            const stage =
+
+                String(
+
+                    item.grade ??
+
+                    item.stage ??
+
+                    ""
+
+                ).trim();
+
+
+            const day =
+
+                normalizeDay(
+
+                    item.day ??
+
+                    item.day_group ??
+
+                    ""
+
+                );
+
+
+            const rawTime =
+
+                String(
+
+                    item.time ??
+
+                    ""
+
+                ).trim();
+
+
+            if (
+
+                !stage ||
+
+                !day ||
+
+                !rawTime
+
+            ) {
+
+                return null;
+            }
+
+
+            const range =
+
+                parseTimeRange(
+                    rawTime
+                );
+
+
+            if (
+
+                !range.start ||
+
+                !range.end
+
+            ) {
+
+                return null;
+            }
+
+
+            return {
+
+                stage,
+
+                day,
+
+                start:
+
+                    timeToString(
+                        range.start
+                    ),
+
+                end:
+
+                    timeToString(
+                        range.end
+                    )
+
+            };
+        }
+
+
+
+        /* =====================================================
+           DUPLICATES
+        ===================================================== */
+
+        function removeDuplicates(
+            schedules
+        ) {
+
+            const result = [];
+
+            const keys =
+                new Set();
+
+
+            schedules.forEach(
+                item => {
+
+                    if (!item) {
+                        return;
+                    }
+
+
+                    const key =
+
+                        [
+
+                            normalizeDay(
+                                item.day
+                            ),
+
+                            String(
+                                item.stage
+                            ).trim(),
+
+                            String(
+                                item.start
+                            ).trim(),
+
+                            String(
+                                item.end
+                            ).trim()
+
+                        ].join("|");
+
+
+                    if (
+                        keys.has(key)
+                    ) {
+
+                        return;
+                    }
+
+
+                    keys.add(key);
+
+                    result.push(
+                        item
+                    );
+
+                }
+            );
+
+
+            return result;
+        }
+
+
+
+        /* =====================================================
+           DAY ICON
+        ===================================================== */
+
+        function getDayIcon(day) {
+
+            const icons = {
+
+                "السبت":
+                    "س",
+
+                "الأحد":
+                    "ح",
+
+                "الاثنين":
+                    "ن",
+
+                "الثلاثاء":
+                    "ث",
+
+                "الأربعاء":
+                    "ر",
+
+                "الخميس":
+                    "خ",
+
+                "الجمعة":
+                    "ج"
+
+            };
+
+
+            return icons[day] ||
+                "•";
+        }
+
+
+
+        /* =====================================================
+           RENDER
+        ===================================================== */
+
+        function renderSchedule(
+            schedules
+        ) {
+
+            const grid =
+                document.getElementById(
+                    "scheduleGrid"
+                );
+
+
+            if (!grid) {
+                return;
+            }
+
+
+            grid.innerHTML = "";
+
+
+            if (
+
+                !Array.isArray(
+                    schedules
+                ) ||
+
+                schedules.length === 0
+
+            ) {
+
+                grid.innerHTML = `
+
+                    <div class="empty-schedule">
+
+                        لا توجد مواعيد حصص
+                        مسجلة لهذا المدرس حاليًا.
+
+                    </div>
+
+                `;
+
+                return;
+            }
+
+
+            const grouped = {};
+
+
+            DAYS.forEach(
+                day => {
+
+                    grouped[day] = [];
+
+                }
+            );
+
+
+            schedules.forEach(
+                lesson => {
+
+                    const day =
+                        normalizeDay(
+                            lesson.day
+                        );
+
+
+                    if (
+                        grouped[day]
+                    ) {
+
+                        grouped[day].push({
+
+                            ...lesson,
+
+                            day
+
+                        });
+
+                    }
+
+                }
+            );
+
+
+            DISPLAY_DAYS.forEach(
+                day => {
+
+                    const lessons =
+                        grouped[day] ||
+                        [];
+
+
+                    lessons.sort(
+
+                        (a, b) =>
+
+                            String(
+                                a.start
+                            ).localeCompare(
+
+                                String(
+                                    b.start
+                                )
+
+                            )
+
+                    );
+
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "day-card";
+
+
+                    if (
+                        day === "الجمعة"
+                    ) {
+
+                        card.classList.add(
+                            "friday-card"
+                        );
+                    }
+
+
+                    card.innerHTML = `
+
+                        <div class="day-header">
+
+                            <div class="day-header-right">
+
+                                <div class="day-icon">
+
+                                    ${escapeHtml(
+                                        getDayIcon(day)
+                                    )}
+
+                                </div>
+
+
+                                <div>
+
+                                    <div class="day-name">
+
+                                        ${escapeHtml(day)}
+
+                                    </div>
+
+
+                                    <div class="day-subtitle">
+
+                                        مواعيد الحصص
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="day-count">
+
+                                ${
+                                    lessons.length === 0
+
+                                        ? "لا توجد حصص"
+
+                                        : lessons.length === 1
+
+                                            ? "حصة واحدة"
+
+                                            : `${lessons.length} حصص`
+                                }
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="day-lessons"></div>
+
+                    `;
+
+
+                    const lessonsContainer =
+                        card.querySelector(
+                            ".day-lessons"
+                        );
+
+
+                    if (
+                        lessons.length === 0
+                    ) {
+
+                        lessonsContainer.innerHTML = `
+
+                            <div class="no-day-lessons">
+
+                                لا توجد حصص مسجلة
+                                لهذا اليوم حاليًا.
+
+                            </div>
+
+                        `;
+
+                    } else {
+
+
+                        lessons.forEach(
+
+                            (
+                                lesson,
+                                index
+                            ) => {
+
+
+                                const status =
+                                    getLessonStatus(
+
+                                        lesson.day,
+
+                                        lesson.start,
+
+                                        lesson.end
+
+                                    );
+
+
+                                const element =
+                                    document.createElement(
+                                        "div"
+                                    );
+
+
+                                element.className =
+                                    "lesson";
+
+
+                                element.dataset.day =
+                                    lesson.day;
+
+
+                                element.dataset.start =
+                                    lesson.start;
+
+
+                                element.dataset.end =
+                                    lesson.end;
+
+
+                                element.innerHTML = `
+
+                                    <div class="lesson-main">
+
+
+                                        <div class="lesson-number">
+
+                                            ${String(
+                                                index + 1
+                                            ).padStart(
+                                                2,
+                                                "0"
+                                            )}
+
+                                        </div>
+
+
+                                        <div class="lesson-info">
+
+                                            <div class="lesson-stage">
+
+                                                ${escapeHtml(
+                                                    lesson.stage
+                                                )}
+
+                                            </div>
+
+
+                                            <div class="lesson-label">
+
+                                                مجموعة تعليمية
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="lesson-side">
+
+
+                                        <div class="lesson-time">
+
+                                            <span class="lesson-time-icon">
+
+                                                ◷
+
+                                            </span>
+
+
+                                            ${escapeHtml(
+                                                formatTime(
+                                                    lesson.start
+                                                )
+                                            )}
+
+
+                                            -
+
+
+                                            ${escapeHtml(
+                                                formatTime(
+                                                    lesson.end
+                                                )
+                                            )}
+
+                                        </div>
+
+
+                                        <div
+                                            class="lesson-status status-${status.type}"
+                                        >
+
+                                            <span
+                                                class="status-dot"
+                                            ></span>
+
+
+                                            <span
+                                                class="status-text"
+                                            >
+
+                                                ${escapeHtml(
+                                                    status.text
+                                                )}
+
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                `;
+
+
+                                lessonsContainer.appendChild(
+                                    element
+                                );
+
+                            }
+
+                        );
+
+                    }
+
+
+                    grid.appendChild(
+                        card
+                    );
+
+                }
+
+            );
+
+        }
+
+
+
+        /* =====================================================
+           UPDATE STATUS EVERY SECOND
+        ===================================================== */
+
+        function updateAllLessonStatuses() {
+
+            document
+                .querySelectorAll(
+                    ".lesson"
+                )
+                .forEach(
+
+                    lesson => {
+
+                        const day =
+                            lesson.dataset.day;
+
+
+                        const start =
+                            lesson.dataset.start;
+
+
+                        const end =
+                            lesson.dataset.end;
+
+
+                        if (
+
+                            !day ||
+
+                            !start ||
+
+                            !end
+
+                        ) {
+
+                            return;
+                        }
+
+
+                        const status =
+                            getLessonStatus(
+
+                                day,
+
+                                start,
+
+                                end
+
+                            );
+
+
+                        const statusElement =
+                            lesson.querySelector(
+                                ".lesson-status"
+                            );
+
+
+                        const textElement =
+                            lesson.querySelector(
+                                ".status-text"
+                            );
+
+
+                        if (
+
+                            !statusElement ||
+
+                            !textElement
+
+                        ) {
+
+                            return;
+                        }
+
+
+                        statusElement.classList.remove(
+
+                            "status-red",
+
+                            "status-yellow",
+
+                            "status-green"
+
+                        );
+
+
+                        statusElement.classList.add(
+
+                            `status-${status.type}`
+
+                        );
+
+
+                        textElement.textContent =
+                            status.text;
+
+                    }
+
+                );
+        }
+
+
+
+        /* =====================================================
+           LOAD TEACHER
+        ===================================================== */
+
+        async function loadTeacher() {
+
+            const params =
+
+                new URLSearchParams(
+
+                    window.location.search
+
+                );
+
+
+            const rawTeacherId =
+                params.get("id");
+
+
+            if (!rawTeacherId) {
+
+                showError(
+                    "لم يتم تحديد المدرس."
+                );
+
+                return;
+            }
+
+
+            const teacherId =
+
+                Number(
+                    rawTeacherId
+                );
+
+
+            if (
+
+                !Number.isInteger(
+                    teacherId
+                )
+
+            ) {
+
+                showError(
+                    "رقم المدرس غير صحيح."
+                );
+
+                return;
+            }
+
+
+            try {
+
+
+                /* =========================================
+                   GET TEACHER
+                ========================================= */
+
+                const {
+
+                    data: teacher,
+
+                    error: teacherError
+
+                } =
+
+                    await supabaseClient
+
+                        .from("teachers")
+
+                        .select("*")
+
+                        .eq(
+                            "id",
+                            teacherId
+                        )
+
+                        .single();
+
+
+                if (
+                    teacherError
+                ) {
+
+                    throw teacherError;
+                }
+
+
+                if (!teacher) {
+
+                    showError(
+                        "المدرس غير موجود."
+                    );
+
+                    return;
+                }
+
+
+
+                /* =========================================
+                   BASIC
+                ========================================= */
+
+                setText(
+                    "teacherName",
+                    teacher.name
+                );
+
+
+                setText(
+                    "teacherSubject",
+                    teacher.subject
+                );
+
+
+                setText(
+
+                    "teacherDescription",
+
+                    teacher.description ||
+
+                    "لا توجد نبذة عن المدرس حاليًا."
+
+                );
+
+
+
+                /* =========================================
+                   IMAGE
+                ========================================= */
+
+                const image =
+
+                    document.getElementById(
+                        "teacherImage"
+                    );
+
+
+                if (image) {
+
+                    if (
+                        teacher.image_url
+                    ) {
+
+                        image.src =
+                            teacher.image_url;
+
+                        image.style.display =
+                            "block";
+
+                    } else {
+
+                        image.style.display =
+                            "none";
+                    }
+
+                }
+
+
+
+                /* =========================================
+                   PRICES
+                ========================================= */
+
+                setText(
+
+                    "prep1Price",
+
+                    teacher.prep1_price ??
+                    200
+
+                );
+
+
+                setText(
+
+                    "prep2Price",
+
+                    teacher.prep2_price ??
+                    200
+
+                );
+
+
+                setText(
+
+                    "prep3Price",
+
+                    teacher.prep3_price ??
+                    250
+
+                );
+
+
+                setText(
+
+                    "sec1Price",
+
+                    teacher.sec1_price ??
+                    300
+
+                );
+
+
+                setText(
+
+                    "sec2Price",
+
+                    teacher.sec2_price ??
+                    400
+
+                );
+
+
+
+                /* =========================================
+                   REAL SCHEDULE
+                   FROM teacher_classes
+                ========================================= */
+
+                const {
+
+                    data: classes,
+
+                    error: classesError
+
+                } =
+
+                    await supabaseClient
+
+                        .from(
+                            "teacher_classes"
+                        )
+
+                        .select("*")
+
+                        .eq(
+                            "teacher_id",
+                            teacherId
+                        )
+
+                        .order(
+
+                            "id",
+
+                            {
+                                ascending:
+                                    true
+                            }
+
+                        );
+
+
+                if (
+                    classesError
+                ) {
+
+                    throw classesError;
+                }
+
+
+                console.log(
+                    "Teacher ID:",
+                    teacherId
+                );
+
+
+                console.log(
+                    "teacher_classes:",
+                    classes
+                );
+
+
+                const schedules =
+
+                    removeDuplicates(
+
+                        (classes || [])
+
+                            .map(
+                                normalizeClassItem
+                            )
+
+                            .filter(
+                                Boolean
+                            )
+
+                    );
+
+
+                console.log(
+                    "Final schedules:",
+                    schedules
+                );
+
+
+                /* =========================================
+                   RENDER
+                ========================================= */
+
+                renderSchedule(
+                    schedules
+                );
+
+
+
+                /* =========================================
+                   SHOW
+                ========================================= */
+
+                const loading =
+
+                    document.getElementById(
+                        "loading"
+                    );
+
+
+                const content =
+
+                    document.getElementById(
+                        "teacherContent"
+                    );
+
+
+                if (loading) {
+
+                    loading.style.display =
+                        "none";
+                }
+
+
+                if (content) {
+
+                    content.style.display =
+                        "block";
+                }
+
+
+            } catch (error) {
+
+                console.error(
+
+                    "Teacher page error:",
+
+                    error
+
+                );
+
+
+                showError(
+
+                    "حدث خطأ أثناء تحميل بيانات المدرس: " +
+
+                    (
+                        error?.message ||
+                        ""
+                    )
+
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           START
+        ===================================================== */
+
+        document.addEventListener(
+
+            "DOMContentLoaded",
+
+            () => {
+
+                loadTeacher();
+
+
+                setInterval(
+
+                    updateAllLessonStatuses,
+
+                    1000
+
+                );
+
+            }
+
+        );
+
+    </script>
+
+</body>
+
+</html>

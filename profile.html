@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>حسابي | EDU CENTER</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Supabase Config -->
+    <script src="supabase-config.js"></script>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: "Cairo", Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(216, 180, 90, 0.10),
+                    transparent 35%
+                ),
+                #050505;
+
+            color: white;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+        }
+
+
+        .profile-container {
+
+            width: 100%;
+
+            max-width: 500px;
+
+        }
+
+
+        .profile-card {
+
+            width: 100%;
+
+            background: rgba(15, 15, 15, 0.95);
+
+            border: 1px solid rgba(216, 180, 90, 0.15);
+
+            border-radius: 25px;
+
+            padding: 40px 30px;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.6);
+
+            backdrop-filter: blur(15px);
+
+            text-align: center;
+
+        }
+
+
+        /* ==========================================
+           اللوجو
+        ========================================== */
+
+        .logo {
+
+            width: 88px;
+
+            height: 88px;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 22px;
+
+            background: rgba(216, 180, 90, 0.05);
+
+            border: 1px solid rgba(216, 180, 90, 0.14);
+
+            padding: 10px;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.25);
+
+        }
+
+
+        .logo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+            display: block;
+
+        }
+
+
+        /* ==========================================
+           صورة الحساب
+        ========================================== */
+
+        .avatar-wrapper {
+
+            width: 125px;
+
+            height: 125px;
+
+            position: relative;
+
+            margin: 0 auto 18px;
+
+        }
+
+
+        .avatar {
+
+            width: 125px;
+
+            height: 125px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(216, 180, 90, 0.22),
+                    rgba(216, 180, 90, 0.05)
+                );
+
+            border: 2px solid rgba(216, 180, 90, 0.45);
+
+            color: #d8b45a;
+
+            font-size: 42px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.4);
+
+        }
+
+
+        .avatar img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+        }
+
+
+        .avatar-upload {
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 0;
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: #d8b45a;
+
+            color: #080808;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            cursor: pointer;
+
+            border: 3px solid #0f0f0f;
+
+            font-size: 16px;
+
+            transition: 0.2s;
+
+            user-select: none;
+
+        }
+
+
+        .avatar-upload:hover {
+
+            transform: scale(1.08);
+
+        }
+
+
+        #avatarInput {
+
+            display: none;
+
+        }
+
+
+        .upload-status {
+
+            min-height: 22px;
+
+            margin-bottom: 18px;
+
+            font-size: 12px;
+
+            color: #888;
+
+        }
+
+
+        .upload-status.success {
+
+            color: #72d572;
+
+        }
+
+
+        .upload-status.error {
+
+            color: #ff7777;
+
+        }
+
+
+        /* ==========================================
+           العنوان
+        ========================================== */
+
+        h1 {
+
+            font-size: 28px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .subtitle {
+
+            color: #999;
+
+            font-size: 14px;
+
+            margin-bottom: 30px;
+
+            line-height: 1.8;
+
+        }
+
+
+        /* ==========================================
+           البيانات
+        ========================================== */
+
+        .info-box {
+
+            background: #080808;
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            border-radius: 15px;
+
+            padding: 18px;
+
+            margin-bottom: 15px;
+
+            text-align: right;
+
+            transition: 0.25s;
+
+        }
+
+
+        .info-box:hover {
+
+            border-color: rgba(216, 180, 90, 0.18);
+
+        }
+
+
+        .info-box span {
+
+            display: block;
+
+            color: #999;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .info-box strong {
+
+            color: #d8b45a;
+
+            font-size: 16px;
+
+            word-break: break-word;
+
+        }
+
+
+        /* ==========================================
+           تسجيل الخروج
+        ========================================== */
+
+        .logout {
+
+            width: 100%;
+
+            height: 52px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d8b45a,
+                    #b9923e
+                );
+
+            color: #080808;
+
+            font-family: inherit;
+
+            font-weight: 800;
+
+            font-size: 14px;
+
+            cursor: pointer;
+
+            margin-top: 20px;
+
+            transition: 0.25s;
+
+            box-shadow:
+                0 10px 30px rgba(216, 180, 90, 0.10);
+
+        }
+
+
+        .logout:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 35px rgba(216, 180, 90, 0.18);
+
+        }
+
+
+        .logout:disabled {
+
+            opacity: 0.6;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+
+        /* ==========================================
+           العودة
+        ========================================== */
+
+        .back {
+
+            display: block;
+
+            margin-top: 20px;
+
+            color: #777;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            transition: 0.2s;
+
+        }
+
+
+        .back:hover {
+
+            color: #d8b45a;
+
+        }
+
+
+        /* ==========================================
+           الموبايل
+        ========================================== */
+
+        @media (max-width: 500px) {
+
+            body {
+
+                padding: 14px;
+
+            }
+
+
+            .profile-card {
+
+                padding: 30px 20px;
+
+                border-radius: 20px;
+
+            }
+
+
+            .logo {
+
+                width: 76px;
+
+                height: 76px;
+
+            }
+
+
+            .avatar-wrapper,
+            .avatar {
+
+                width: 105px;
+
+                height: 105px;
+
+            }
+
+
+            h1 {
+
+                font-size: 24px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="profile-container">
+
+        <section class="profile-card">
+
+
+            <!-- ==========================================
+                 اللوجو
+            ========================================== -->
+
+            <div class="logo">
+
+                <img
+                    src="logo.png"
+                    alt="شعار EDU CENTER"
+                >
+
+            </div>
+
+
+            <!-- ==========================================
+                 صورة الحساب
+            ========================================== -->
+
+            <div class="avatar-wrapper">
+
+                <div
+                    class="avatar"
+                    id="avatar"
+                >
+
+                    م
+
+                </div>
+
+
+                <label
+                    class="avatar-upload"
+                    for="avatarInput"
+                    title="تغيير صورة الحساب"
+                >
+
+                    📷
+
+                </label>
+
+
+                <input
+                    type="file"
+                    id="avatarInput"
+                    accept="image/jpeg,image/png,image/webp"
+                >
+
+            </div>
+
+
+            <div
+                class="upload-status"
+                id="uploadStatus"
+            ></div>
+
+
+            <!-- ==========================================
+                 العنوان
+            ========================================== -->
+
+            <h1>
+                حسابي
+            </h1>
+
+
+            <p class="subtitle">
+                مرحبًا بك في EDU CENTER
+            </p>
+
+
+            <!-- ==========================================
+                 الاسم
+            ========================================== -->
+
+            <div class="info-box">
+
+                <span>
+                    الاسم
+                </span>
+
+                <strong id="userName">
+                    جاري التحميل...
+                </strong>
+
+            </div>
+
+
+            <!-- ==========================================
+                 البريد
+            ========================================== -->
+
+            <div class="info-box">
+
+                <span>
+                    البريد الإلكتروني
+                </span>
+
+                <strong id="userEmail">
+                    جاري التحميل...
+                </strong>
+
+            </div>
+
+
+            <!-- ==========================================
+                 تسجيل الخروج
+            ========================================== -->
+
+            <button
+                class="logout"
+                id="logoutBtn"
+            >
+
+                تسجيل الخروج
+
+            </button>
+
+
+            <!-- ==========================================
+                 العودة للرئيسية
+            ========================================== -->
+
+            <a
+                href="index.html"
+                class="back"
+            >
+
+                ← العودة للرئيسية
+
+            </a>
+
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        // ==========================================
+        // العناصر
+        // ==========================================
+
+        const userName =
+            document.getElementById("userName");
+
+        const userEmail =
+            document.getElementById("userEmail");
+
+        const logoutBtn =
+            document.getElementById("logoutBtn");
+
+        const avatar =
+            document.getElementById("avatar");
+
+        const avatarInput =
+            document.getElementById("avatarInput");
+
+        const uploadStatus =
+            document.getElementById("uploadStatus");
+
+
+        let currentUser = null;
+
+
+        // ==========================================
+        // عرض الصورة
+        // ==========================================
+
+        function showAvatar(url, name) {
+
+            const firstLetter =
+                (name || "م").trim().charAt(0) || "م";
+
+
+            // تنظيف الصورة القديمة
+
+            avatar.innerHTML = "";
+
+
+            // لا توجد صورة
+
+            if (!url || !url.trim()) {
+
+                avatar.textContent =
+                    firstLetter;
+
+                return;
+
+            }
+
+
+            // إنشاء الصورة
+
+            const image =
+                document.createElement("img");
+
+
+            image.src =
+                url.trim();
+
+
+            image.alt =
+                name || "صورة الحساب";
+
+
+            image.style.width =
+                "100%";
+
+
+            image.style.height =
+                "100%";
+
+
+            image.style.objectFit =
+                "cover";
+
+
+            image.style.display =
+                "block";
+
+
+            // لو الصورة فشلت
+
+            image.onerror =
+                function () {
+
+                    console.error(
+                        "Avatar image failed:",
+                        image.src
+                    );
+
+
+                    avatar.innerHTML =
+                        "";
+
+
+                    avatar.textContent =
+                        firstLetter;
+
+                };
+
+
+            avatar.appendChild(image);
+
+        }
+
+
+        // ==========================================
+        // تحميل بيانات الحساب
+        // ==========================================
+
+        async function loadProfile() {
+
+            try {
+
+                // التأكد من وجود Supabase
+
+                if (
+                    typeof supabaseClient ===
+                    "undefined"
+                ) {
+
+                    console.error(
+                        "supabaseClient غير موجود"
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+
+                    return;
+
+                }
+
+
+                // ==================================
+                // المستخدم الحالي
+                // ==================================
+
+                const {
+                    data: userData,
+                    error: userError
+                } =
+                    await supabaseClient.auth.getUser();
+
+
+                if (
+                    userError ||
+                    !userData ||
+                    !userData.user
+                ) {
+
+                    console.error(
+                        "User Error:",
+                        userError
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+
+                    return;
+
+                }
+
+
+                currentUser =
+                    userData.user;
+
+
+                // ==================================
+                // البريد الإلكتروني
+                // ==================================
+
+                userEmail.textContent =
+                    currentUser.email ||
+                    "غير متوفر";
+
+
+                // ==================================
+                // بيانات profiles
+                // ==================================
+
+                const {
+                    data: profile,
+                    error: profileError
+                } =
+                    await supabaseClient
+                        .from("profiles")
+                        .select(
+                            "id, full_name, role, avatar_url"
+                        )
+                        .eq(
+                            "id",
+                            currentUser.id
+                        )
+                        .maybeSingle();
+
+
+                if (profileError) {
+
+                    console.error(
+                        "Profile Database Error:",
+                        profileError
+                    );
+
+                }
+
+
+                // ==================================
+                // الاسم
+                // ==================================
+
+                const name =
+                    profile?.full_name ||
+                    currentUser
+                        .user_metadata
+                        ?.full_name ||
+                    "طالب EDU CENTER";
+
+
+                userName.textContent =
+                    name;
+
+
+                // ==================================
+                // الصورة
+                // ==================================
+
+                const avatarUrl =
+                    profile?.avatar_url || "";
+
+
+                console.log(
+                    "Avatar URL:",
+                    avatarUrl
+                );
+
+
+                showAvatar(
+                    avatarUrl,
+                    name
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Unexpected Profile Error:",
+                    error
+                );
+
+
+                window.location.href =
+                    "login.html";
+
+            }
+
+        }
+
+
+        // ==========================================
+        // رفع صورة الحساب
+        // ==========================================
+
+        avatarInput.addEventListener(
+            "change",
+            async function () {
+
+                const file =
+                    avatarInput.files[0];
+
+
+                if (!file) {
+
+                    return;
+
+                }
+
+
+                // ==================================
+                // التأكد من تسجيل الدخول
+                // ==================================
+
+                if (!currentUser) {
+
+                    uploadStatus.textContent =
+                        "لم يتم تحميل الحساب بعد.";
+
+
+                    uploadStatus.className =
+                        "upload-status error";
+
+
+                    return;
+
+                }
+
+
+                // ==================================
+                // أنواع الصور المسموحة
+                // ==================================
+
+                const allowedTypes = [
+
+                    "image/jpeg",
+
+                    "image/png",
+
+                    "image/webp"
+
+                ];
+
+
+                if (
+                    !allowedTypes.includes(
+                        file.type
+                    )
+                ) {
+
+                    uploadStatus.textContent =
+                        "اختار صورة JPG أو PNG أو WEBP فقط.";
+
+
+                    uploadStatus.className =
+                        "upload-status error";
+
+
+                    avatarInput.value =
+                        "";
+
+
+                    return;
+
+                }
+
+
+                // ==================================
+                // الحد الأقصى 5MB
+                // ==================================
+
+                if (
+                    file.size >
+                    5 * 1024 * 1024
+                ) {
+
+                    uploadStatus.textContent =
+                        "حجم الصورة يجب ألا يتجاوز 5MB.";
+
+
+                    uploadStatus.className =
+                        "upload-status error";
+
+
+                    avatarInput.value =
+                        "";
+
+
+                    return;
+
+                }
+
+
+                try {
+
+                    uploadStatus.textContent =
+                        "جاري رفع الصورة...";
+
+
+                    uploadStatus.className =
+                        "upload-status";
+
+
+                    // ==================================
+                    // امتداد الصورة
+                    // ==================================
+
+                    const extension =
+                        file.name
+                            .split(".")
+                            .pop()
+                            .toLowerCase();
+
+
+                    // ==================================
+                    // مسار الصورة
+                    // ==================================
+
+                    const filePath =
+                        `${currentUser.id}/${Date.now()}.${extension}`;
+
+
+                    console.log(
+                        "Uploading:",
+                        filePath
+                    );
+
+
+                    // ==================================
+                    // رفع الصورة
+                    // ==================================
+
+                    const {
+                        error: uploadError
+                    } =
+                        await supabaseClient
+                            .storage
+                            .from("profile-images")
+                            .upload(
+                                filePath,
+                                file,
+                                {
+                                    cacheControl:
+                                        "3600",
+
+                                    upsert:
+                                        true,
+
+                                    contentType:
+                                        file.type
+                                }
+                            );
+
+
+                    if (uploadError) {
+
+                        throw uploadError;
+
+                    }
+
+
+                    // ==================================
+                    // الحصول على الرابط العام
+                    // ==================================
+
+                    const {
+                        data: publicData
+                    } =
+                        supabaseClient
+                            .storage
+                            .from("profile-images")
+                            .getPublicUrl(
+                                filePath
+                            );
+
+
+                    const publicUrl =
+                        publicData?.publicUrl;
+
+
+                    console.log(
+                        "Public URL:",
+                        publicUrl
+                    );
+
+
+                    if (!publicUrl) {
+
+                        throw new Error(
+                            "لم يتم الحصول على رابط الصورة."
+                        );
+
+                    }
+
+
+                    // ==================================
+                    // حفظ الرابط في profiles
+                    // ==================================
+
+                    const {
+                        error: updateError
+                    } =
+                        await supabaseClient
+                            .from("profiles")
+                            .update({
+
+                                avatar_url:
+                                    publicUrl
+
+                            })
+                            .eq(
+                                "id",
+                                currentUser.id
+                            );
+
+
+                    if (updateError) {
+
+                        throw updateError;
+
+                    }
+
+
+                    // ==================================
+                    // عرض الصورة مباشرة
+                    // ==================================
+
+                    showAvatar(
+                        publicUrl,
+                        userName.textContent
+                    );
+
+
+                    // ==================================
+                    // رسالة نجاح
+                    // ==================================
+
+                    uploadStatus.textContent =
+                        "تم حفظ صورة الحساب بنجاح ✓";
+
+
+                    uploadStatus.className =
+                        "upload-status success";
+
+
+                    avatarInput.value =
+                        "";
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Avatar Upload Error:",
+                        error
+                    );
+
+
+                    uploadStatus.textContent =
+                        "حدث خطأ أثناء رفع الصورة. راجع Console.";
+
+
+                    uploadStatus.className =
+                        "upload-status error";
+
+                }
+
+            }
+        );
+
+
+        // ==========================================
+        // تسجيل الخروج
+        // ==========================================
+
+        logoutBtn.addEventListener(
+            "click",
+            async function () {
+
+                logoutBtn.disabled =
+                    true;
+
+
+                logoutBtn.textContent =
+                    "جاري تسجيل الخروج...";
+
+
+                try {
+
+                    const {
+                        error
+                    } =
+                        await supabaseClient
+                            .auth
+                            .signOut();
+
+
+                    if (error) {
+
+                        console.error(
+                            "Logout Error:",
+                            error
+                        );
+
+
+                        logoutBtn.disabled =
+                            false;
+
+
+                        logoutBtn.textContent =
+                            "تسجيل الخروج";
+
+
+                        return;
+
+                    }
+
+
+                    localStorage.removeItem(
+                        "user"
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Unexpected Logout Error:",
+                        error
+                    );
+
+
+                    logoutBtn.disabled =
+                        false;
+
+
+                    logoutBtn.textContent =
+                        "تسجيل الخروج";
+
+                }
+
+            }
+        );
+
+
+        // ==========================================
+        // تشغيل الصفحة
+        // ==========================================
+
+        loadProfile();
+
+    </script>
+
+</body>
+
+</html>

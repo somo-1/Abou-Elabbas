@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>المدرسين | EDU CENTER</title>
+
+    <meta
+        name="description"
+        content="تعرف على مدرسين EDU CENTER واختر المدرس المناسب لك"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+
+    <style>
+
+        :root {
+            --gold: #d8b45a;
+            --gold-light: #f0d98a;
+            --gold-dark: #a78335;
+
+            --black: #050505;
+            --black-soft: #080808;
+
+            --card: rgba(18, 18, 18, 0.72);
+            --card-hover: rgba(24, 24, 24, 0.9);
+
+            --text: #f5f5f5;
+            --text-soft: #a7a7a7;
+            --text-muted: #777;
+
+            --border: rgba(216, 180, 90, 0.14);
+
+            --success: #4ade80;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Cairo", Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(216, 180, 90, 0.07),
+                    transparent 30%
+                ),
+                var(--black);
+
+            color: var(--text);
+
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            width: 100%;
+            height: 82px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: rgba(5, 5, 5, 0.82);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            width: 58px;
+            height: 58px;
+
+            object-fit: contain;
+
+            display: block;
+
+            transition: 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.04);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--text-soft);
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .login-button {
+            padding: 10px 20px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            color: var(--gold-light);
+
+            background: rgba(216, 180, 90, 0.04);
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: 0.25s ease;
+        }
+
+        .login-button:hover {
+            background: rgba(216, 180, 90, 0.1);
+
+            border-color:
+                rgba(216, 180, 90, 0.3);
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--gold),
+                    var(--gold-dark)
+                );
+
+            color: #090909;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            transition: 0.25s ease;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 25px
+                rgba(216, 180, 90, 0.12);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .page-header {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 90px 24px 55px;
+
+            text-align: center;
+        }
+
+        .page-badge {
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 7px 16px;
+
+            margin-bottom: 20px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 999px;
+
+            background:
+                rgba(216, 180, 90, 0.045);
+
+            color: var(--gold-light);
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .page-header h1 {
+            font-size:
+                clamp(34px, 5vw, 56px);
+
+            line-height: 1.2;
+
+            margin-bottom: 18px;
+
+            font-weight: 800;
+
+            letter-spacing: -1px;
+        }
+
+        .page-header h1 span {
+            color: var(--gold-light);
+        }
+
+        .page-header p {
+            max-width: 650px;
+
+            margin: auto;
+
+            color: var(--text-soft);
+
+            font-size: 15px;
+
+            line-height: 2;
+        }
+
+        /* =========================
+           TEACHERS
+        ========================= */
+
+        .teachers-section {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 20px 24px 100px;
+        }
+
+        .teachers-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 22px;
+        }
+
+        .teacher-card {
+            position: relative;
+
+            padding: 28px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.025),
+                    rgba(255, 255, 255, 0.008)
+                ),
+                var(--card);
+
+            backdrop-filter: blur(15px);
+
+            -webkit-backdrop-filter: blur(15px);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+
+            animation:
+                cardAppear 0.5s ease both;
+        }
+
+        .teacher-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: -100px;
+            right: -100px;
+
+            width: 220px;
+            height: 220px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(216, 180, 90, 0.09),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-7px);
+
+            border-color:
+                rgba(216, 180, 90, 0.28);
+
+            background: var(--card-hover);
+
+            box-shadow:
+                0 18px 45px
+                rgba(0, 0, 0, 0.35),
+
+                0 0 35px
+                rgba(216, 180, 90, 0.04);
+        }
+
+        /* =========================
+           TEACHER TOP
+        ========================= */
+
+        .teacher-top {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           TEACHER IMAGE
+        ========================= */
+
+        .teacher-icon {
+            width: 72px;
+            height: 72px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 20px;
+
+            background:
+                rgba(216, 180, 90, 0.07);
+
+            border:
+                1px solid
+                rgba(216, 180, 90, 0.13);
+
+            color: var(--gold-light);
+
+            font-size: 26px;
+
+            font-weight: 800;
+
+            overflow: hidden;
+
+            flex-shrink: 0;
+        }
+
+        .teacher-icon img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            border-radius: 19px;
+        }
+
+        .active-badge {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 6px 11px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(74, 222, 128, 0.07);
+
+            border:
+                1px solid
+                rgba(74, 222, 128, 0.13);
+
+            color: var(--success);
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+        .active-dot {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background:
+                var(--success);
+
+            box-shadow:
+                0 0 8px
+                rgba(74, 222, 128, 0.5);
+        }
+
+        .inactive-badge {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 6px 11px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255, 255, 255, 0.04);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+        .teacher-card h2 {
+            font-size: 21px;
+
+            margin-bottom: 10px;
+
+            font-weight: 800;
+        }
+
+        .teacher-description {
+            color: var(--text-soft);
+
+            font-size: 13px;
+
+            line-height: 1.9;
+
+            min-height: 50px;
+        }
+
+        .teacher-info {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-top: 24px;
+
+            padding-top: 18px;
+
+            border-top:
+                1px solid
+                rgba(255, 255, 255, 0.06);
+        }
+
+        .classes-count {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 2px;
+        }
+
+        .classes-count span:first-child {
+            color: var(--text-muted);
+
+            font-size: 11px;
+        }
+
+        .classes-count span:last-child {
+            color: var(--text);
+
+            font-size: 15px;
+
+            font-weight: 800;
+        }
+
+        .teacher-link {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 10px 15px;
+
+            border-radius: 11px;
+
+            background:
+                rgba(216, 180, 90, 0.07);
+
+            border:
+                1px solid
+                rgba(216, 180, 90, 0.12);
+
+            color: var(--gold-light);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition: 0.25s ease;
+        }
+
+        .teacher-link:hover {
+            background:
+                rgba(216, 180, 90, 0.13);
+
+            border-color:
+                rgba(216, 180, 90, 0.25);
+
+            transform:
+                translateX(-2px);
+        }
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading-box {
+            grid-column: 1 / -1;
+
+            min-height: 250px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 16px;
+
+            color: var(--text-soft);
+        }
+
+        .loader {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+
+            border:
+                3px solid
+                rgba(216, 180, 90, 0.12);
+
+            border-top-color:
+                var(--gold);
+
+            animation:
+                spin 0.8s linear infinite;
+        }
+
+        /* =========================
+           EMPTY / ERROR
+        ========================= */
+
+        .message-box {
+            grid-column: 1 / -1;
+
+            padding: 55px 25px;
+
+            text-align: center;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 22px;
+
+            background: var(--card);
+        }
+
+        .message-icon {
+            font-size: 35px;
+
+            margin-bottom: 15px;
+        }
+
+        .message-box h3 {
+            font-size: 20px;
+
+            margin-bottom: 8px;
+        }
+
+        .message-box p {
+            color: var(--text-soft);
+
+            font-size: 13px;
+
+            line-height: 1.9;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 30px 20px;
+
+            text-align: center;
+
+            border-top:
+                1px solid
+                rgba(255, 255, 255, 0.05);
+
+            color: var(--text-muted);
+
+            font-size: 12px;
+        }
+
+        footer span {
+            color: var(--gold);
+        }
+
+        /* =========================
+           ANIMATIONS
+        ========================= */
+
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 950px) {
+
+            .teachers-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .nav-links {
+                gap: 18px;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                height: auto;
+
+                min-height: 75px;
+
+                padding: 10px 20px;
+
+                gap: 15px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .navbar-actions {
+                gap: 7px;
+            }
+
+            .login-button,
+            .nav-button {
+                padding: 8px 12px;
+
+                font-size: 11px;
+            }
+
+            .logo img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .page-header {
+                padding-top: 65px;
+            }
+
+            .page-header h1 {
+                font-size: 35px;
+            }
+
+            .teachers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .teacher-card {
+                padding: 24px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <img
+                src="logo.png"
+                alt="شعار مركز التعليم"
+            >
+
+        </a>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                الرئيسية
+            </a>
+
+            <a href="teachers.html">
+                المدرسين
+            </a>
+
+            <a href="index.html#features">
+                المميزات
+            </a>
+
+            <a href="index.html#contact">
+                تواصل معنا
+            </a>
+
+        </div>
+
+        <div class="navbar-actions">
+
+            <a
+                href="login.html"
+                class="login-button"
+            >
+                تسجيل الدخول
+            </a>
+
+            <a
+                href="register.html"
+                class="nav-button"
+            >
+                ابدأ الآن
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="page-header">
+
+        <div class="page-badge">
+            EDU CENTER
+        </div>
+
+        <h1>
+
+            مدرسينا
+
+            <span>
+                المتميزين
+            </span>
+
+        </h1>
+
+        <p>
+
+            اختر المدرس المناسب لك واستعرض المراحل الدراسية
+            والمواعيد والأسعار المتاحة لكل مدرس.
+
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         TEACHERS
+    ========================= -->
+
+    <main class="teachers-section">
+
+        <div
+            class="teachers-grid"
+            id="teachersGrid"
+        >
+
+            <div class="loading-box">
+
+                <div class="loader"></div>
+
+                <p>
+                    جاري تحميل المدرسين...
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        © 2026
+
+        <span>
+            EDU CENTER
+        </span>
+
+        — جميع الحقوق محفوظة
+
+    </footer>
+
+
+    <script>
+
+        const teachersGrid =
+            document.getElementById("teachersGrid");
+
+
+        function showMessage(icon, title, text) {
+
+            teachersGrid.innerHTML = `
+
+                <div class="message-box">
+
+                    <div class="message-icon">
+                        ${icon}
+                    </div>
+
+                    <h3>
+                        ${title}
+                    </h3>
+
+                    <p>
+                        ${text}
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+
+        async function loadTeachers() {
+
+            try {
+
+                if (
+                    typeof supabaseClient === "undefined" ||
+                    !supabaseClient
+                ) {
+
+                    throw new Error(
+                        "Supabase client غير موجود."
+                    );
+
+                }
+
+
+                /* =========================
+                   جلب المدرسين + الصور
+                ========================= */
+
+                const {
+                    data: teachers,
+                    error: teachersError
+
+                } = await supabaseClient
+
+                    .from("teachers")
+
+                    .select(
+                        "id, name, active, image_url"
+                    )
+
+                    .eq("active", true)
+
+                    .order("id", {
+                        ascending: true
+                    });
+
+
+                if (teachersError) {
+                    throw teachersError;
+                }
+
+
+                if (
+                    !teachers ||
+                    teachers.length === 0
+                ) {
+
+                    showMessage(
+                        "📚",
+                        "لا يوجد مدرسون حاليًا",
+                        "لم تتم إضافة مدرسين متاحين في الوقت الحالي."
+                    );
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   جلب الحصص
+                ========================= */
+
+                const {
+                    data: classes,
+                    error: classesError
+
+                } = await supabaseClient
+
+                    .from("teacher_classes")
+
+                    .select(
+                        "id, teacher_id, status"
+                    );
+
+
+                if (classesError) {
+
+                    console.warn(
+                        "تعذر تحميل عدد الحصص:",
+                        classesError
+                    );
+
+                }
+
+
+                const allClasses =
+                    classes || [];
+
+
+                teachersGrid.innerHTML = "";
+
+
+                /* =========================
+                   إنشاء كروت المدرسين
+                ========================= */
+
+                teachers.forEach(
+                    (teacher, index) => {
+
+                        const teacherClasses =
+                            allClasses.filter(
+                                item =>
+                                    Number(
+                                        item.teacher_id
+                                    ) ===
+                                    Number(
+                                        teacher.id
+                                    )
+                            );
+
+
+                        const activeClasses =
+                            teacherClasses.filter(
+                                item =>
+                                    item.status ===
+                                    "active"
+                            );
+
+
+                        const card =
+                            document.createElement(
+                                "article"
+                            );
+
+
+                        card.className =
+                            "teacher-card";
+
+
+                        card.style.animationDelay =
+                            `${index * 0.08}s`;
+
+
+                        const firstLetter =
+                            teacher.name
+                                ? teacher.name
+                                    .trim()
+                                    .charAt(0)
+                                : "م";
+
+
+                        /* =========================
+                           تحديد الصورة
+                        ========================= */
+
+                        let teacherVisual;
+
+
+                        if (
+                            teacher.image_url &&
+                            String(
+                                teacher.image_url
+                            ).trim() !== ""
+                        ) {
+
+                            teacherVisual = `
+
+                                <img
+                                    src="${escapeHtml(
+                                        teacher.image_url
+                                    )}"
+                                    alt="${escapeHtml(
+                                        teacher.name ||
+                                        "صورة المدرس"
+                                    )}"
+                                    loading="lazy"
+                                    onerror="
+                                        this.style.display='none';
+                                        this.parentElement.classList.add('image-error');
+                                        this.parentElement.insertAdjacentText(
+                                            'beforeend',
+                                            '${escapeHtml(firstLetter)}'
+                                        );
+                                    "
+                                >
+
+                            `;
+
+                        } else {
+
+                            teacherVisual =
+                                firstLetter;
+
+                        }
+
+
+                        card.innerHTML = `
+
+                            <div class="teacher-top">
+
+                                <div class="teacher-icon">
+
+                                    ${teacherVisual}
+
+                                </div>
+
+
+                                ${
+                                    teacher.active
+
+                                        ? `
+
+                                            <div class="active-badge">
+
+                                                <span class="active-dot"></span>
+
+                                                متاح حاليًا
+
+                                            </div>
+
+                                        `
+
+                                        : `
+
+                                            <div class="inactive-badge">
+
+                                                غير متاح حاليًا
+
+                                            </div>
+
+                                        `
+                                }
+
+                            </div>
+
+
+                            <h2>
+
+                                ${escapeHtml(
+                                    teacher.name ||
+                                    "مدرس بدون اسم"
+                                )}
+
+                            </h2>
+
+
+                            <p class="teacher-description">
+
+                                استعرض المراحل الدراسية
+                                والمواعيد والأسعار الخاصة بالمدرس.
+
+                            </p>
+
+
+                            <div class="teacher-info">
+
+                                <div class="classes-count">
+
+                                    <span>
+                                        الحصص المتاحة
+                                    </span>
+
+                                    <span>
+                                        ${activeClasses.length}
+                                    </span>
+
+                                </div>
+
+
+                                <a
+                                    href="teacher.html?id=${encodeURIComponent(
+                                        teacher.id
+                                    )}"
+                                    class="teacher-link"
+                                >
+
+                                    عرض التفاصيل
+
+                                    <span>
+                                        ←
+                                    </span>
+
+                                </a>
+
+                            </div>
+
+                        `;
+
+
+                        teachersGrid.appendChild(card);
+
+                    }
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Teachers loading error:",
+                    error
+                );
+
+
+                showMessage(
+                    "⚠️",
+                    "حدث خطأ",
+                    "تعذر تحميل بيانات المدرسين. تأكد من اتصال Supabase ثم أعد تحميل الصفحة."
+                );
+
+            }
+
+        }
+
+
+        /* =========================
+           حماية النصوص
+        ========================= */
+
+        function escapeHtml(value) {
+
+            return String(value)
+
+                .replaceAll(
+                    "&",
+                    "&amp;"
+                )
+
+                .replaceAll(
+                    "<",
+                    "&lt;"
+                )
+
+                .replaceAll(
+                    ">",
+                    "&gt;"
+                )
+
+                .replaceAll(
+                    '"',
+                    "&quot;"
+                )
+
+                .replaceAll(
+                    "'",
+                    "&#039;"
+                );
+
+        }
+
+
+        /* =========================
+           تشغيل الصفحة
+        ========================= */
+
+        loadTeachers();
+
+    </script>
+
+</body>
+
+</html>

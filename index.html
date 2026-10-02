@@ -1,0 +1,2050 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="EDU CENTER - منصتك التعليمية">
+
+    <title>EDU CENTER | مركز التعليم</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+
+    <style>
+
+        /* =========================
+           LOGO
+        ========================== */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+        }
+
+
+        /* =========================
+           ACCOUNT
+        ========================== */
+
+        .account-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .account-user {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+
+            border: 1px solid rgba(216, 180, 90, .15);
+            border-radius: 12px;
+
+            background: rgba(255, 255, 255, .03);
+
+            text-decoration: none;
+            color: inherit;
+
+            transition: .3s;
+        }
+
+        .account-user:hover {
+            border-color: rgba(216, 180, 90, .35);
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .account-icon {
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(216, 180, 90, .1);
+
+            font-size: 16px;
+        }
+
+        .account-avatar {
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+            display: block;
+
+            border: 1px solid rgba(216, 180, 90, .45);
+
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .admin-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 9px 13px;
+
+            border-radius: 10px;
+
+            border: 1px solid rgba(216, 180, 90, .25);
+
+            background: rgba(216, 180, 90, .08);
+
+            color: #d8b45a;
+
+            text-decoration: none;
+
+            transition: .3s;
+        }
+
+        .admin-button:hover {
+            background: rgba(216, 180, 90, .15);
+            border-color: #d8b45a;
+        }
+
+        .logout-button {
+            padding: 9px 13px;
+
+            border-radius: 10px;
+
+            border: 1px solid rgba(255, 80, 80, .2);
+
+            background: rgba(255, 80, 80, .05);
+
+            color: #ff9999;
+
+            cursor: pointer;
+
+            font-family: inherit;
+
+            transition: .3s;
+        }
+
+        .logout-button:hover {
+            background: rgba(255, 80, 80, .1);
+            border-color: rgba(255, 100, 100, .4);
+        }
+
+
+        /* =========================
+           TEACHERS
+        ========================== */
+
+        .teachers-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+        .teacher-card {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            background: rgba(18, 18, 18, .8);
+
+            border: 1px solid rgba(216, 180, 90, .15);
+
+            border-radius: 22px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            transition:
+                transform .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-6px);
+
+            border-color: #d8b45a;
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, .25);
+        }
+
+        .teacher-image {
+            width: 120px;
+            height: 120px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+
+            border: 2px solid #d8b45a;
+
+            background: rgba(255, 255, 255, .03);
+
+            flex-shrink: 0;
+        }
+
+        .teacher-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        .no-image {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 45px;
+        }
+
+        .teacher-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .teacher-card p {
+            margin-bottom: 18px;
+        }
+
+        .teacher-subject {
+            color: #d8b45a;
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+        .teacher-status {
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            margin-bottom: 15px;
+
+            background: rgba(80, 200, 120, .08);
+
+            border: 1px solid rgba(80, 200, 120, .18);
+
+            color: #8be0a8;
+        }
+
+        .teacher-status.inactive {
+            background: rgba(255, 80, 80, .07);
+
+            border-color: rgba(255, 80, 80, .18);
+
+            color: #ff9999;
+        }
+
+        .teacher-details-button {
+            margin-top: auto;
+
+            width: 100%;
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* =========================
+           EMPTY
+        ========================== */
+
+        .empty-teachers {
+            grid-column: 1 / -1;
+
+            width: 100%;
+
+            padding: 45px 20px;
+
+            text-align: center;
+
+            border: 1px solid rgba(216, 180, 90, .12);
+
+            border-radius: 20px;
+
+            background: rgba(255, 255, 255, .025);
+
+            color: rgba(255, 255, 255, .65);
+        }
+
+
+        /* =========================
+           LOADING
+        ========================== */
+
+        .teachers-loading {
+            grid-column: 1 / -1;
+
+            width: 100%;
+
+            padding: 45px 20px;
+
+            text-align: center;
+
+            color: rgba(255, 255, 255, .65);
+        }
+
+        .teachers-spinner {
+            width: 34px;
+            height: 34px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
+
+            border: 3px solid rgba(216, 180, 90, .12);
+
+            border-top-color: #d8b45a;
+
+            animation: teacherSpin .8s linear infinite;
+        }
+
+        @keyframes teacherSpin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 900px) {
+
+            .teachers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            .teachers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .account-area {
+                justify-content: center;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .logo img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .teacher-card {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+
+        <div class="container nav-container">
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+
+                <img
+                    src="logo.png"
+                    alt="EDU CENTER"
+                >
+
+            </a>
+
+
+            <nav
+                class="nav-links"
+                id="mainNav"
+            >
+
+                <a href="#home">
+                    الرئيسية
+                </a>
+
+                <a href="#teachers">
+                    المدرسين
+                </a>
+
+                <a href="#features">
+                    المميزات
+                </a>
+
+                <a href="#contact">
+                    تواصل معنا
+                </a>
+
+            </nav>
+
+
+            <div
+                class="navbar-actions"
+                id="authArea"
+            >
+
+                <a
+                    href="login.html"
+                    class="login-button"
+                >
+                    تسجيل الدخول
+                </a>
+
+                <a
+                    href="register.html"
+                    class="primary-button"
+                >
+                    إنشاء حساب
+                </a>
+
+            </div>
+
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="فتح القائمة"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main>
+
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
+        <section
+            class="hero"
+            id="home"
+        >
+
+            <div class="container hero-container">
+
+                <div class="hero-content">
+
+                    <span
+                        class="hero-badge"
+                        id="heroBadge"
+                    >
+                        ✦ منصة تعليمية متطورة
+                    </span>
+
+
+                    <h1 id="heroTitle">
+
+                        مستقبلك
+
+                        <span>
+                            التعليمي
+                        </span>
+
+                        يبدأ من هنا
+
+                    </h1>
+
+
+                    <p id="heroDescription">
+
+                        منصة تعليمية تساعدك على الوصول إلى المدرسين
+                        ومعرفة المواعيد والأسعار.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="#teachers"
+                            class="primary-button"
+                        >
+                            اكتشف المدرسين ←
+                        </a>
+
+
+                        <a
+                            href="#features"
+                            class="secondary-button"
+                        >
+                            اكتشف المنصة
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-card">
+
+                    <div class="graduation-icon">
+                        🎓
+                    </div>
+
+
+                    <h2 id="heroCardTitle">
+                        تعلم بشكل أذكى
+                    </h2>
+
+
+                    <p id="heroCardDescription">
+                        كل ما تحتاجه في مكان واحد
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TEACHERS
+        ========================== -->
+
+        <section
+            class="section teachers-section"
+            id="teachers"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>
+                        فريقنا التعليمي
+                    </span>
+
+
+                    <h2>
+
+                        اختر
+
+                        <strong>
+                            مدرسك
+                        </strong>
+
+                    </h2>
+
+
+                    <p>
+                        تعرف على المدرسين والمواعيد والأسعار.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="teachers-grid"
+                    id="teachersGrid"
+                >
+
+                    <div class="teachers-loading">
+
+                        <div class="teachers-spinner"></div>
+
+                        جاري تحميل المدرسين...
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FEATURES
+        ========================== -->
+
+        <section
+            class="section features-section"
+            id="features"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>
+                        لماذا EDU CENTER؟
+                    </span>
+
+
+                    <h2>
+
+                        كل ما تحتاجه
+
+                        <strong>
+                            في مكان واحد
+                        </strong>
+
+                    </h2>
+
+
+                    <p>
+                        تجربة تعليمية منظمة وسهلة للطلاب.
+                    </p>
+
+                </div>
+
+
+                <div class="features-grid">
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            🎓
+                        </div>
+
+                        <h3>
+                            مدرسون متخصصون
+                        </h3>
+
+                        <p>
+                            تعرف على المدرسين والمراحل المتاحة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            🗓️
+                        </div>
+
+                        <h3>
+                            مواعيد منظمة
+                        </h3>
+
+                        <p>
+                            جداول واضحة للحصص.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            💳
+                        </div>
+
+                        <h3>
+                            أسعار واضحة
+                        </h3>
+
+                        <p>
+                            تعرف السعر الشهري لكل مرحلة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            ⚡
+                        </div>
+
+                        <h3>
+                            تجربة سهلة
+                        </h3>
+
+                        <p>
+                            يعمل على الهاتف والكمبيوتر.
+                        </p>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CTA
+        ========================== -->
+
+        <section class="cta-section">
+
+            <div class="container">
+
+                <div class="cta-card">
+
+                    <div class="cta-content">
+
+                        <span>
+                            مستعد تبدأ؟
+                        </span>
+
+
+                        <h2>
+                            ابدأ رحلتك التعليمية الآن
+                        </h2>
+
+
+                        <p>
+                            سجل حسابك واكتشف المدرسين.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="#teachers"
+                        class="primary-button"
+                    >
+                        اكتشف المدرسين ←
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+
+        <section
+            class="section contact-section"
+            id="contact"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>
+                        تواصل معنا
+                    </span>
+
+
+                    <h2>
+
+                        نحن هنا
+
+                        <strong>
+                            لمساعدتك
+                        </strong>
+
+                    </h2>
+
+
+                    <p id="contactDescription">
+                        تواصل معنا لأي استفسار.
+                    </p>
+
+                </div>
+
+
+                <div class="contact-card">
+
+                    <h3 id="contactTitle">
+                        هل لديك سؤال؟
+                    </h3>
+
+
+                    <p>
+                        يمكنك التواصل معنا لمعرفة المزيد.
+                    </p>
+
+
+                    <div
+                        class="contact-details"
+                        style="margin: 20px 0;"
+                    >
+
+                        <p>
+
+                            <strong>
+                                البريد:
+                            </strong>
+
+                            <a
+                                href="#"
+                                id="contactEmail"
+                            >
+                                —
+                            </a>
+
+                        </p>
+
+
+                        <p>
+
+                            <strong>
+                                الهاتف:
+                            </strong>
+
+                            <a
+                                href="#"
+                                id="contactPhone"
+                            >
+                                —
+                            </a>
+
+                        </p>
+
+
+                        <p>
+
+                            <strong>
+                                واتساب:
+                            </strong>
+
+                            <a
+                                href="#"
+                                id="contactWhatsapp"
+                            >
+                                —
+                            </a>
+
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="#"
+                        class="secondary-button"
+                        id="contactButton"
+                    >
+                        تواصل معنا
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="logo"
+                >
+
+                    <img
+                        src="logo.png"
+                        alt="EDU CENTER"
+                    >
+
+                </a>
+
+
+                <p>
+                    منصتك التعليمية بطريقة أبسط وأذكى.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                © <span id="currentYear">2026</span>
+
+                EDU CENTER — جميع الحقوق محفوظة
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         INDEX SCRIPT
+    ========================== -->
+
+    <script>
+
+        /* ========================================
+           SUPABASE READY
+        ======================================== */
+
+        function supabaseReady() {
+
+            return (
+                typeof supabaseClient !== "undefined" &&
+                supabaseClient &&
+                supabaseClient.auth
+            );
+
+        }
+
+
+        /* ========================================
+           ESCAPE HTML
+        ======================================== */
+
+        function escapeHTML(value) {
+
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* ========================================
+           LOAD TEACHERS
+        ======================================== */
+
+        async function loadTeachersHome() {
+
+            const grid =
+                document.getElementById("teachersGrid");
+
+
+            if (!grid) {
+                return;
+            }
+
+
+            if (!supabaseReady()) {
+
+                grid.innerHTML = `
+
+                    <div class="empty-teachers">
+
+                        لا يوجد مدرسين حاليا
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            try {
+
+                const {
+                    data,
+                    error
+                } = await supabaseClient
+
+                    .from("teachers")
+
+                    .select(`
+                        id,
+                        name,
+                        subject,
+                        description,
+                        image_url,
+                        active
+                    `)
+
+                    .eq("active", true)
+
+                    .order("id", {
+                        ascending: true
+                    });
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                if (!data || data.length === 0) {
+
+                    grid.innerHTML = `
+
+                        <div class="empty-teachers">
+
+                            لا يوجد مدرسين حاليا
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                grid.innerHTML = "";
+
+
+                data.forEach(function (teacher) {
+
+                    /* =========================
+                       CARD
+                    ========================== */
+
+                    const card =
+                        document.createElement("article");
+
+                    card.className =
+                        "teacher-card";
+
+
+                    /* =========================
+                       IMAGE
+                    ========================== */
+
+                    const imageBox =
+                        document.createElement("div");
+
+                    imageBox.className =
+                        "teacher-image";
+
+
+                    if (teacher.image_url) {
+
+                        const img =
+                            document.createElement("img");
+
+                        img.src =
+                            teacher.image_url;
+
+                        img.alt =
+                            teacher.name || "مدرس";
+
+                        img.loading =
+                            "lazy";
+
+
+                        img.onerror =
+                            function () {
+
+                                this.remove();
+
+                                imageBox.innerHTML = `
+
+                                    <div class="no-image">
+                                        👨‍🏫
+                                    </div>
+
+                                `;
+
+                            };
+
+
+                        imageBox.appendChild(img);
+
+                    } else {
+
+                        imageBox.innerHTML = `
+
+                            <div class="no-image">
+                                👨‍🏫
+                            </div>
+
+                        `;
+
+                    }
+
+
+                    card.appendChild(imageBox);
+
+
+                    /* =========================
+                       NAME
+                    ========================== */
+
+                    const title =
+                        document.createElement("h3");
+
+                    title.textContent =
+                        teacher.name || "مدرس";
+
+                    card.appendChild(title);
+
+
+                    /* =========================
+                       SUBJECT
+                    ========================== */
+
+                    if (teacher.subject) {
+
+                        const subject =
+                            document.createElement("div");
+
+                        subject.className =
+                            "teacher-subject";
+
+                        subject.textContent =
+                            teacher.subject;
+
+                        card.appendChild(subject);
+
+                    }
+
+
+                    /* =========================
+                       STATUS
+                    ========================== */
+
+                    const status =
+                        document.createElement("span");
+
+                    status.className =
+                        teacher.active === false
+                            ? "teacher-status inactive"
+                            : "teacher-status";
+
+                    status.textContent =
+                        teacher.active === false
+                            ? "غير متاح حاليًا"
+                            : "متاح حاليًا";
+
+                    card.appendChild(status);
+
+
+                    /* =========================
+                       DESCRIPTION
+                    ========================== */
+
+                    const description =
+                        document.createElement("p");
+
+                    description.textContent =
+                        teacher.description ||
+                        "تعرف على المواعيد والأسعار.";
+
+                    card.appendChild(description);
+
+
+                    /* =========================
+                       BUTTON
+                    ========================== */
+
+                    const button =
+                        document.createElement("a");
+
+                    button.className =
+                        "secondary-button teacher-details-button";
+
+                    button.href =
+                        "teacher.html?id=" +
+                        encodeURIComponent(
+                            teacher.id
+                        );
+
+                    button.textContent =
+                        "عرض التفاصيل ←";
+
+                    card.appendChild(button);
+
+
+                    /* =========================
+                       CARD CLICK
+                    ========================== */
+
+                    card.style.cursor =
+                        "pointer";
+
+
+                    card.addEventListener(
+                        "click",
+                        function (event) {
+
+                            if (
+                                event.target.closest("a")
+                            ) {
+                                return;
+                            }
+
+
+                            window.location.href =
+                                "teacher.html?id=" +
+                                encodeURIComponent(
+                                    teacher.id
+                                );
+
+                        }
+                    );
+
+
+                    grid.appendChild(card);
+
+                });
+
+
+            } catch (error) {
+
+                console.error(
+                    "Teachers Error:",
+                    error
+                );
+
+
+                grid.innerHTML = `
+
+                    <div class="empty-teachers">
+
+                        حدث خطأ أثناء تحميل المدرسين.
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* ========================================
+           SITE SETTINGS
+        ======================================== */
+
+        async function loadSiteSettings() {
+
+            if (!supabaseReady()) {
+                return;
+            }
+
+
+            try {
+
+                /* =========================
+                   HOMEPAGE
+                ========================== */
+
+                const {
+                    data: siteData,
+                    error: siteError
+                } = await supabaseClient
+
+                    .from("site_settings")
+
+                    .select("setting_value")
+
+                    .eq(
+                        "setting_key",
+                        "site"
+                    )
+
+                    .maybeSingle();
+
+
+                if (siteError) {
+
+                    console.error(
+                        "Site Settings Error:",
+                        siteError
+                    );
+
+                }
+
+
+                const site =
+                    siteData?.setting_value || {};
+
+
+                const heroBadge =
+                    document.getElementById(
+                        "heroBadge"
+                    );
+
+                const heroTitle =
+                    document.getElementById(
+                        "heroTitle"
+                    );
+
+                const heroDescription =
+                    document.getElementById(
+                        "heroDescription"
+                    );
+
+                const heroCardTitle =
+                    document.getElementById(
+                        "heroCardTitle"
+                    );
+
+                const heroCardDescription =
+                    document.getElementById(
+                        "heroCardDescription"
+                    );
+
+
+                if (
+                    heroBadge &&
+                    site.hero_badge
+                ) {
+
+                    heroBadge.textContent =
+                        site.hero_badge;
+
+                }
+
+
+                if (
+                    heroTitle &&
+                    site.hero_title
+                ) {
+
+                    heroTitle.textContent =
+                        site.hero_title;
+
+                }
+
+
+                if (
+                    heroDescription &&
+                    site.hero_description
+                ) {
+
+                    heroDescription.textContent =
+                        site.hero_description;
+
+                }
+
+
+                if (
+                    heroCardTitle &&
+                    site.hero_card_title
+                ) {
+
+                    heroCardTitle.textContent =
+                        site.hero_card_title;
+
+                }
+
+
+                if (
+                    heroCardDescription &&
+                    site.hero_card_description
+                ) {
+
+                    heroCardDescription.textContent =
+                        site.hero_card_description;
+
+                }
+
+
+                /* =========================
+                   CONTACT
+                ========================== */
+
+                const {
+                    data: contactData,
+                    error: contactError
+                } = await supabaseClient
+
+                    .from("site_settings")
+
+                    .select("setting_value")
+
+                    .eq(
+                        "setting_key",
+                        "contact"
+                    )
+
+                    .maybeSingle();
+
+
+                if (contactError) {
+
+                    console.error(
+                        "Contact Settings Error:",
+                        contactError
+                    );
+
+                }
+
+
+                const contact =
+                    contactData?.setting_value || {};
+
+
+                const contactTitle =
+                    document.getElementById(
+                        "contactTitle"
+                    );
+
+                const contactDescription =
+                    document.getElementById(
+                        "contactDescription"
+                    );
+
+                const contactEmail =
+                    document.getElementById(
+                        "contactEmail"
+                    );
+
+                const contactPhone =
+                    document.getElementById(
+                        "contactPhone"
+                    );
+
+                const contactWhatsapp =
+                    document.getElementById(
+                        "contactWhatsapp"
+                    );
+
+                const contactButton =
+                    document.getElementById(
+                        "contactButton"
+                    );
+
+
+                if (
+                    contactTitle &&
+                    contact.title
+                ) {
+
+                    contactTitle.textContent =
+                        contact.title;
+
+                }
+
+
+                if (
+                    contactDescription &&
+                    contact.description
+                ) {
+
+                    contactDescription.textContent =
+                        contact.description;
+
+                }
+
+
+                if (
+                    contactEmail &&
+                    contact.email
+                ) {
+
+                    contactEmail.textContent =
+                        contact.email;
+
+                    contactEmail.href =
+                        "mailto:" +
+                        contact.email;
+
+                }
+
+
+                if (
+                    contactPhone &&
+                    contact.phone
+                ) {
+
+                    contactPhone.textContent =
+                        contact.phone;
+
+                    contactPhone.href =
+                        "tel:" +
+                        contact.phone.replace(
+                            /\s+/g,
+                            ""
+                        );
+
+                }
+
+
+                if (
+                    contactWhatsapp &&
+                    contact.whatsapp
+                ) {
+
+                    contactWhatsapp.textContent =
+                        contact.whatsapp;
+
+
+                    const whatsappNumber =
+                        contact.whatsapp.replace(
+                            /[^0-9]/g,
+                            ""
+                        );
+
+
+                    contactWhatsapp.href =
+                        "https://wa.me/" +
+                        whatsappNumber;
+
+                    contactWhatsapp.target =
+                        "_blank";
+
+                    contactWhatsapp.rel =
+                        "noopener noreferrer";
+
+                }
+
+
+                if (
+                    contactButton &&
+                    contact.button
+                ) {
+
+                    contactButton.textContent =
+                        contact.button;
+
+                }
+
+
+                if (
+                    contactButton &&
+                    contact.whatsapp
+                ) {
+
+                    const whatsappNumber =
+                        contact.whatsapp.replace(
+                            /[^0-9]/g,
+                            ""
+                        );
+
+
+                    contactButton.href =
+                        "https://wa.me/" +
+                        whatsappNumber;
+
+                    contactButton.target =
+                        "_blank";
+
+                    contactButton.rel =
+                        "noopener noreferrer";
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Settings Error:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        /* ========================================
+           AUTH AREA
+        ======================================== */
+
+        async function updateAuthArea() {
+
+            const authArea =
+                document.getElementById(
+                    "authArea"
+                );
+
+
+            if (!authArea) {
+                return;
+            }
+
+
+            if (!supabaseReady()) {
+                return;
+            }
+
+
+            try {
+
+                const {
+                    data: {
+                        user
+                    }
+                } =
+                    await supabaseClient
+                        .auth
+                        .getUser();
+
+
+                /* =========================
+                   NOT LOGGED IN
+                ========================== */
+
+                if (!user) {
+
+                    authArea.innerHTML = `
+
+                        <a
+                            href="login.html"
+                            class="login-button"
+                        >
+                            تسجيل الدخول
+                        </a>
+
+                        <a
+                            href="register.html"
+                            class="primary-button"
+                        >
+                            إنشاء حساب
+                        </a>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   PROFILE
+                ========================== */
+
+                let profile = null;
+
+
+                try {
+
+                    const {
+                        data,
+                        error
+                    } =
+                        await supabaseClient
+
+                            .from("profiles")
+
+                            .select(
+                                "full_name, role, avatar_url"
+                            )
+
+                            .eq(
+                                "id",
+                                user.id
+                            )
+
+                            .maybeSingle();
+
+
+                    if (!error) {
+                        profile = data;
+                    }
+
+                } catch (error) {
+
+                    console.error(
+                        "Profile Error:",
+                        error
+                    );
+
+                }
+
+
+                const name =
+                    profile?.full_name ||
+                    user.user_metadata?.full_name ||
+                    "حسابي";
+
+
+                const avatarUrl =
+                    profile?.avatar_url ||
+                    null;
+
+
+                const isManager =
+                    profile?.role === "manager";
+
+
+                /* =========================
+                   AVATAR
+                ========================== */
+
+                const avatarHTML =
+                    avatarUrl
+
+                        ? `
+
+                            <img
+                                src="${escapeHTML(avatarUrl)}"
+                                alt="صورة الحساب"
+                                class="account-avatar"
+
+                                onerror="
+                                    this.style.display='none';
+                                    this.nextElementSibling.style.display='flex';
+                                "
+                            >
+
+                            <div
+                                class="account-icon"
+                                style="display:none;"
+                            >
+                                👤
+                            </div>
+
+                        `
+
+                        : `
+
+                            <div class="account-icon">
+                                👤
+                            </div>
+
+                        `;
+
+
+                /* =========================
+                   LOGGED IN UI
+                ========================== */
+
+                authArea.innerHTML = `
+
+                    <div class="account-area">
+
+                        <a
+                            href="profile.html"
+                            class="account-user"
+                        >
+
+                            ${avatarHTML}
+
+                            <span>
+                                ${escapeHTML(name)}
+                            </span>
+
+                        </a>
+
+
+                        ${
+                            isManager
+
+                                ? `
+
+                                    <a
+                                        href="admin.html"
+                                        class="admin-button"
+                                    >
+                                        👑 لوحة الإدارة
+                                    </a>
+
+                                `
+
+                                : ""
+                        }
+
+
+                        <button
+                            class="logout-button"
+                            type="button"
+                            id="logoutButton"
+                        >
+                            تسجيل الخروج
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                const logoutButton =
+                    document.getElementById(
+                        "logoutButton"
+                    );
+
+
+                if (logoutButton) {
+
+                    logoutButton.addEventListener(
+                        "click",
+                        logoutUser
+                    );
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Auth Error:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        /* ========================================
+           LOGOUT
+        ======================================== */
+
+        async function logoutUser() {
+
+            if (!supabaseReady()) {
+                return;
+            }
+
+
+            try {
+
+                const {
+                    error
+                } =
+                    await supabaseClient
+                        .auth
+                        .signOut();
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                window.location.reload();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Logout Error:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        /* ========================================
+           MOBILE MENU
+        ======================================== */
+
+        function setupMobileMenu() {
+
+            const menuToggle =
+                document.getElementById(
+                    "menuToggle"
+                );
+
+
+            const nav =
+                document.getElementById(
+                    "mainNav"
+                );
+
+
+            if (!menuToggle || !nav) {
+                return;
+            }
+
+
+            menuToggle.addEventListener(
+                "click",
+                function () {
+
+                    nav.classList.toggle(
+                        "mobile-active"
+                    );
+
+                }
+            );
+
+
+            nav.querySelectorAll("a")
+                .forEach(
+                    function (link) {
+
+                        link.addEventListener(
+                            "click",
+                            function () {
+
+                                nav.classList.remove(
+                                    "mobile-active"
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
+
+
+        /* ========================================
+           AUTH LISTENER
+        ======================================== */
+
+        function setupAuthListener() {
+
+            if (!supabaseReady()) {
+                return;
+            }
+
+
+            supabaseClient
+                .auth
+                .onAuthStateChange(
+                    function () {
+
+                        setTimeout(
+                            function () {
+
+                                updateAuthArea();
+
+                            },
+                            0
+                        );
+
+                    }
+                );
+
+        }
+
+
+        /* ========================================
+           START
+        ======================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            async function () {
+
+                /* YEAR */
+
+                const year =
+                    document.getElementById(
+                        "currentYear"
+                    );
+
+
+                if (year) {
+
+                    year.textContent =
+                        new Date()
+                            .getFullYear();
+
+                }
+
+
+                /* MENU */
+
+                setupMobileMenu();
+
+
+                /* TEACHERS */
+
+                await loadTeachersHome();
+
+
+                /* SETTINGS */
+
+                await loadSiteSettings();
+
+
+                /* AUTH */
+
+                await updateAuthArea();
+
+
+                setupAuthListener();
+
+            }
+        );
+
+    </script>
+
+
+    <!-- =========================
+         GLOBAL SCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
+```

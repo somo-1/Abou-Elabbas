@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>دخول الإدارة | EDU CENTER</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase-config.js"></script>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(216,180,90,.08),
+                    transparent 35%
+                ),
+                #050505;
+            color: #fff;
+            font-family: "Cairo", sans-serif;
+        }
+
+        .admin-login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+        }
+
+        .admin-login-card {
+            width: 100%;
+            max-width: 460px;
+            padding: 38px;
+            background: rgba(18,18,18,.82);
+            border: 1px solid rgba(216,180,90,.18);
+            border-radius: 25px;
+            box-shadow: 0 25px 70px rgba(0,0,0,.45);
+            backdrop-filter: blur(18px);
+        }
+
+        .admin-logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .admin-logo img {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+        }
+
+        .admin-login-card h1 {
+            margin: 0 0 8px;
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .admin-login-card .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,.58);
+            margin-bottom: 30px;
+        }
+
+        .admin-badge {
+            display: table;
+            margin: 0 auto 20px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            color: #d8b45a;
+            border: 1px solid rgba(216,180,90,.2);
+            background: rgba(216,180,90,.07);
+            font-size: 13px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: rgba(255,255,255,.8);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,.1);
+            outline: none;
+            background: rgba(255,255,255,.04);
+            color: #fff;
+            font-family: inherit;
+            font-size: 15px;
+        }
+
+        .form-group input:focus {
+            border-color: rgba(216,180,90,.55);
+        }
+
+        .login-btn {
+            width: 100%;
+            border: 0;
+            padding: 14px;
+            border-radius: 12px;
+            background: #d8b45a;
+            color: #050505;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            background: #f0d98b;
+        }
+
+        .message {
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            font-size: 14px;
+        }
+
+        .message.error {
+            display: block;
+            color: #ffaaaa;
+            background: rgba(255,70,70,.08);
+            border: 1px solid rgba(255,70,70,.15);
+        }
+
+        .message.success {
+            display: block;
+            color: #bce8bd;
+            background: rgba(70,200,90,.08);
+            border: 1px solid rgba(70,200,90,.15);
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 22px;
+            color: rgba(255,255,255,.55);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-home:hover {
+            color: #d8b45a;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="admin-login-page">
+
+    <div class="admin-login-card">
+
+        <div class="admin-logo">
+
+            <img
+                src="logo.png"
+                alt="EDU CENTER"
+            >
+
+        </div>
+
+        <span class="admin-badge">
+            👑 منطقة الإدارة
+        </span>
+
+        <h1>
+            تسجيل دخول الإدارة
+        </h1>
+
+        <p class="subtitle">
+            هذه الصفحة مخصصة لمدير الموقع فقط
+        </p>
+
+
+        <form id="adminLoginForm">
+
+            <div class="form-group">
+
+                <label for="adminEmail">
+                    البريد الإلكتروني
+                </label>
+
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="admin@example.com"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="adminPassword">
+                    كلمة المرور
+                </label>
+
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="••••••••"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="login-btn"
+                id="loginBtn"
+            >
+                دخول لوحة الإدارة
+            </button>
+
+        </form>
+
+
+        <div
+            class="message"
+            id="message"
+        ></div>
+
+
+        <a
+            href="index.html"
+            class="back-home"
+        >
+            ← العودة للموقع
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+        const form =
+            document.getElementById(
+                "adminLoginForm"
+            );
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+        const loginBtn =
+            document.getElementById(
+                "loginBtn"
+            );
+
+
+        function showMessage(
+            text,
+            type = "error"
+        ) {
+
+            message.textContent = text;
+
+            message.className =
+                "message " + type;
+
+        }
+
+
+        try {
+
+            const {
+                data: {
+                    session
+                }
+            } =
+                await supabaseClient
+                    .auth
+                    .getSession();
+
+
+            if (session) {
+
+                const {
+                    data: profile
+                } =
+                    await supabaseClient
+                        .from("profiles")
+                        .select("role")
+                        .eq(
+                            "id",
+                            session.user.id
+                        )
+                        .maybeSingle();
+
+
+                if (
+                    profile &&
+                    profile.role === "manager"
+                ) {
+
+                    window.location.href =
+                        "admin.html";
+
+                    return;
+
+                }
+
+            }
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+
+        form.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    document
+                        .getElementById(
+                            "adminEmail"
+                        )
+                        .value
+                        .trim();
+
+
+                const password =
+                    document
+                        .getElementById(
+                            "adminPassword"
+                        )
+                        .value;
+
+
+                loginBtn.disabled = true;
+
+                loginBtn.textContent =
+                    "جاري الدخول...";
+
+
+                try {
+
+
+                    const {
+                        data,
+                        error
+                    } =
+                        await supabaseClient
+                            .auth
+                            .signInWithPassword({
+                                email,
+                                password
+                            });
+
+
+                    if (error) {
+                        throw error;
+                    }
+
+
+                    const {
+                        data: profile,
+                        error:
+                            profileError
+                    } =
+                        await supabaseClient
+                            .from("profiles")
+                            .select("role")
+                            .eq(
+                                "id",
+                                data.user.id
+                            )
+                            .maybeSingle();
+
+
+                    if (profileError) {
+                        throw profileError;
+                    }
+
+
+                    if (
+                        !profile ||
+                        profile.role !==
+                        "manager"
+                    ) {
+
+                        await supabaseClient
+                            .auth
+                            .signOut();
+
+                        throw new Error(
+                            "هذا الحساب ليس لديه صلاحيات مدير."
+                        );
+
+                    }
+
+
+                    showMessage(
+                        "تم تسجيل الدخول بنجاح...",
+                        "success"
+                    );
+
+
+                    setTimeout(
+                        function () {
+
+                            window.location.href =
+                                "admin.html";
+
+                        },
+                        500
+                    );
+
+
+                } catch (error) {
+
+
+                    console.error(
+                        "Admin Login Error:",
+                        error
+                    );
+
+
+                    showMessage(
+                        error.message ||
+                        "حدث خطأ أثناء تسجيل الدخول."
+                    );
+
+
+                    loginBtn.disabled =
+                        false;
+
+                    loginBtn.textContent =
+                        "دخول لوحة الإدارة";
+
+                }
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>
