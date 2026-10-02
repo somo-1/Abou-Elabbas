@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -154,6 +154,53 @@
         .logout-button:hover {
             background: rgba(255, 80, 80, .1);
             border-color: rgba(255, 100, 100, .4);
+        }
+
+
+        /* =========================
+           MOBILE MENU FIX
+        ========================== */
+
+        .navbar {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            position: relative;
+        }
+
+        .menu-toggle {
+            display: none;
+
+            width: 44px;
+            height: 44px;
+
+            padding: 0;
+
+            border: 1px solid rgba(216, 180, 90, .18);
+            border-radius: 12px;
+
+            background: rgba(255, 255, 255, .03);
+
+            color: #d8b45a;
+
+            cursor: pointer;
+
+            font-size: 24px;
+            line-height: 1;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            transition: .25s ease;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(216, 180, 90, .08);
+            border-color: rgba(216, 180, 90, .4);
         }
 
 
@@ -367,6 +414,7 @@
 
         }
 
+
         @media (max-width: 800px) {
 
             .teachers-grid {
@@ -377,7 +425,136 @@
                 justify-content: center;
             }
 
+
+            /* MOBILE NAVBAR */
+
+            .nav-container {
+                display: flex;
+                align-items: center;
+
+                gap: 8px;
+            }
+
+
+            .nav-links {
+                display: none !important;
+            }
+
+
+            .menu-toggle {
+                display: flex;
+            }
+
+
+            /*
+             * تسجيل الدخول يفضل ظاهر
+             * خارج قائمة الثلاث شرط
+             */
+
+            .navbar-actions {
+                display: flex;
+
+                align-items: center;
+                justify-content: center;
+
+                margin-right: auto;
+
+                gap: 7px;
+            }
+
+
+            .login-button {
+                display: inline-flex !important;
+
+                align-items: center;
+                justify-content: center;
+
+                padding: 8px 11px;
+
+                border-radius: 10px;
+
+                white-space: nowrap;
+
+                font-size: 11px;
+            }
+
+
+            /*
+             * إنشاء الحساب يختفي على الشاشات الصغيرة
+             * حتى يظل الهيدر مرتبًا
+             */
+
+            .navbar-actions > .primary-button {
+                display: none;
+            }
+
+
+            /*
+             * القائمة بعد فتحها
+             */
+
+            .nav-links.mobile-active {
+                display: flex !important;
+
+                position: absolute;
+
+                top: calc(100% + 10px);
+
+                right: 0;
+                left: 0;
+
+                width: 100%;
+
+                padding: 10px;
+
+                flex-direction: column;
+
+                gap: 4px;
+
+                background: rgba(8, 8, 8, .98);
+
+                border: 1px solid rgba(216, 180, 90, .15);
+
+                border-radius: 18px;
+
+                box-shadow:
+                    0 20px 45px rgba(0, 0, 0, .35);
+
+                backdrop-filter: blur(18px);
+                -webkit-backdrop-filter: blur(18px);
+
+                z-index: 2000;
+            }
+
+
+            .nav-links.mobile-active a {
+                display: block;
+
+                width: 100%;
+
+                padding: 13px 14px;
+
+                border-radius: 11px;
+
+                color: rgba(255, 255, 255, .72);
+
+                font-size: 13px;
+
+                text-align: right;
+
+                transition: .2s ease;
+            }
+
+
+            .nav-links.mobile-active a:hover,
+            .nav-links.mobile-active a:active {
+                color: #d8b45a;
+
+                background: rgba(216, 180, 90, .06);
+            }
+
         }
+
 
         @media (max-width: 600px) {
 
@@ -388,6 +565,43 @@
 
             .teacher-card {
                 padding: 22px;
+            }
+
+            .login-button {
+                font-size: 10px;
+
+                padding: 8px 10px;
+            }
+
+            .menu-toggle {
+                width: 42px;
+                height: 42px;
+
+                font-size: 22px;
+            }
+
+        }
+
+
+        @media (max-width: 390px) {
+
+            .nav-container {
+                gap: 6px;
+            }
+
+            .logo img {
+                width: 46px;
+                height: 46px;
+            }
+
+            .login-button {
+                padding: 7px 8px;
+                font-size: 9px;
+            }
+
+            .menu-toggle {
+                width: 40px;
+                height: 40px;
             }
 
         }
@@ -472,6 +686,7 @@
                 id="menuToggle"
                 type="button"
                 aria-label="فتح القائمة"
+                aria-expanded="false"
             >
                 ☰
             </button>
@@ -1072,20 +1287,12 @@
 
                 data.forEach(function (teacher) {
 
-                    /* =========================
-                       CARD
-                    ========================== */
-
                     const card =
                         document.createElement("article");
 
                     card.className =
                         "teacher-card";
 
-
-                    /* =========================
-                       IMAGE
-                    ========================== */
 
                     const imageBox =
                         document.createElement("div");
@@ -1143,10 +1350,6 @@
                     card.appendChild(imageBox);
 
 
-                    /* =========================
-                       NAME
-                    ========================== */
-
                     const title =
                         document.createElement("h3");
 
@@ -1155,10 +1358,6 @@
 
                     card.appendChild(title);
 
-
-                    /* =========================
-                       SUBJECT
-                    ========================== */
 
                     if (teacher.subject) {
 
@@ -1176,10 +1375,6 @@
                     }
 
 
-                    /* =========================
-                       STATUS
-                    ========================== */
-
                     const status =
                         document.createElement("span");
 
@@ -1196,10 +1391,6 @@
                     card.appendChild(status);
 
 
-                    /* =========================
-                       DESCRIPTION
-                    ========================== */
-
                     const description =
                         document.createElement("p");
 
@@ -1209,10 +1400,6 @@
 
                     card.appendChild(description);
 
-
-                    /* =========================
-                       BUTTON
-                    ========================== */
 
                     const button =
                         document.createElement("a");
@@ -1231,10 +1418,6 @@
 
                     card.appendChild(button);
 
-
-                    /* =========================
-                       CARD CLICK
-                    ========================== */
 
                     card.style.cursor =
                         "pointer";
@@ -1301,10 +1484,6 @@
 
 
             try {
-
-                /* =========================
-                   HOMEPAGE
-                ========================== */
 
                 const {
                     data: siteData,
@@ -1417,10 +1596,6 @@
 
                 }
 
-
-                /* =========================
-                   CONTACT
-                ========================== */
 
                 const {
                     data: contactData,
@@ -1650,10 +1825,6 @@
                         .getUser();
 
 
-                /* =========================
-                   NOT LOGGED IN
-                ========================== */
-
                 if (!user) {
 
                     authArea.innerHTML = `
@@ -1678,10 +1849,6 @@
 
                 }
 
-
-                /* =========================
-                   PROFILE
-                ========================== */
 
                 let profile = null;
 
@@ -1737,10 +1904,6 @@
                     profile?.role === "manager";
 
 
-                /* =========================
-                   AVATAR
-                ========================== */
-
                 const avatarHTML =
                     avatarUrl
 
@@ -1775,10 +1938,6 @@
                         `;
 
 
-                /* =========================
-                   LOGGED IN UI
-                ========================== */
-
                 authArea.innerHTML = `
 
                     <div class="account-area">
@@ -1799,18 +1958,14 @@
 
                         ${
                             isManager
-
                                 ? `
-
                                     <a
                                         href="admin.html"
                                         class="admin-button"
                                     >
                                         👑 لوحة الإدارة
                                     </a>
-
                                 `
-
                                 : ""
                         }
 
@@ -1924,9 +2079,24 @@
                 "click",
                 function () {
 
-                    nav.classList.toggle(
-                        "mobile-active"
+                    const isOpen =
+                        nav.classList.toggle(
+                            "mobile-active"
+                        );
+
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        isOpen
+                            ? "true"
+                            : "false"
                     );
+
+
+                    menuToggle.textContent =
+                        isOpen
+                            ? "✕"
+                            : "☰";
 
                 }
             );
@@ -1944,11 +2114,87 @@
                                     "mobile-active"
                                 );
 
+
+                                menuToggle.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
+
+
+                                menuToggle.textContent =
+                                    "☰";
+
                             }
                         );
 
                     }
                 );
+
+
+            document.addEventListener(
+                "click",
+                function (event) {
+
+                    const clickedMenu =
+                        nav.contains(event.target);
+
+                    const clickedButton =
+                        menuToggle.contains(
+                            event.target
+                        );
+
+
+                    if (
+                        !clickedMenu &&
+                        !clickedButton
+                    ) {
+
+                        nav.classList.remove(
+                            "mobile-active"
+                        );
+
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+
+                        menuToggle.textContent =
+                            "☰";
+
+                    }
+
+                }
+            );
+
+
+            window.addEventListener(
+                "resize",
+                function () {
+
+                    if (
+                        window.innerWidth > 800
+                    ) {
+
+                        nav.classList.remove(
+                            "mobile-active"
+                        );
+
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+
+                        menuToggle.textContent =
+                            "☰";
+
+                    }
+
+                }
+            );
 
         }
 
@@ -1992,8 +2238,6 @@
             "DOMContentLoaded",
             async function () {
 
-                /* YEAR */
-
                 const year =
                     document.getElementById(
                         "currentYear"
@@ -2009,22 +2253,14 @@
                 }
 
 
-                /* MENU */
-
                 setupMobileMenu();
 
-
-                /* TEACHERS */
 
                 await loadTeachersHome();
 
 
-                /* SETTINGS */
-
                 await loadSiteSettings();
 
-
-                /* AUTH */
 
                 await updateAuthArea();
 
@@ -2047,4 +2283,4 @@
 </body>
 
 </html>
-```
+
